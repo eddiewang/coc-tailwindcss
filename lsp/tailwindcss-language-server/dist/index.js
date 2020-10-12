@@ -374,13 +374,13 @@ module.exports = (function(e, t) {
           value: function() {
             return once(this);
           },
-          configurable: true
+          configurable: true,
         });
         Object.defineProperty(Function.prototype, "onceStrict", {
           value: function() {
             return onceStrict(this);
           },
-          configurable: true
+          configurable: true,
         });
       });
       function once(e) {
@@ -554,7 +554,7 @@ module.exports = (function(e, t) {
         white: [255, 255, 255],
         whitesmoke: [245, 245, 245],
         yellow: [255, 255, 0],
-        yellowgreen: [154, 205, 50]
+        yellowgreen: [154, 205, 50],
       };
     },
     114: function(e, t) {
@@ -585,7 +585,7 @@ module.exports = (function(e, t) {
       }
       t.array = array;
       function stringArray(e) {
-        return array(e) && e.every(e => string(e));
+        return array(e) && e.every((e) => string(e));
       }
       t.stringArray = stringArray;
     },
@@ -868,7 +868,7 @@ module.exports = (function(e, t) {
       "use strict";
       Object.defineProperty(t, "__esModule", { value: true });
       const n = r(573);
-      t.WorkspaceFoldersFeature = e => {
+      t.WorkspaceFoldersFeature = (e) => {
         return class extends e {
           initialize(e) {
             let t = e.workspace;
@@ -876,7 +876,7 @@ module.exports = (function(e, t) {
               this._onDidChangeWorkspaceFolders = new n.Emitter();
               this.connection.onNotification(
                 n.DidChangeWorkspaceFoldersNotification.type,
-                e => {
+                (e) => {
                   this._onDidChangeWorkspaceFolders.fire(e.event);
                 }
               );
@@ -906,7 +906,7 @@ module.exports = (function(e, t) {
       Object.defineProperty(t, "__esModule", { value: true });
       const n = r(573);
       const i = r(382);
-      t.ConfigurationFeature = e => {
+      t.ConfigurationFeature = (e) => {
         return class extends e {
           getConfiguration(e) {
             if (!e) {
@@ -921,7 +921,7 @@ module.exports = (function(e, t) {
             let t = { items: Array.isArray(e) ? e : [e] };
             return this.connection
               .sendRequest(n.ConfigurationRequest.type, t)
-              .then(t => {
+              .then((t) => {
                 return Array.isArray(e) ? t : t[0];
               });
           }
@@ -1166,11 +1166,11 @@ module.exports = (function(e, t) {
       (function(e) {
         e.None = Object.freeze({
           isCancellationRequested: false,
-          onCancellationRequested: n.Event.None
+          onCancellationRequested: n.Event.None,
         });
         e.Cancelled = Object.freeze({
           isCancellationRequested: true,
-          onCancellationRequested: n.Event.None
+          onCancellationRequested: n.Event.None,
         });
         function is(t) {
           let r = t;
@@ -1189,7 +1189,7 @@ module.exports = (function(e, t) {
         return {
           dispose() {
             clearTimeout(r);
-          }
+          },
         };
       });
       class MutableToken {
@@ -1598,7 +1598,7 @@ module.exports = (function(e, t) {
           this.writable = e;
           this.encoding = t;
           this.errorCount = 0;
-          this.writable.on("error", e => this.fireError(e));
+          this.writable.on("error", (e) => this.fireError(e));
           this.writable.on("close", () => this.fireClose());
         }
         write(e) {
@@ -1624,7 +1624,7 @@ module.exports = (function(e, t) {
           this.queue = [];
           this.sending = false;
           let t = this.process;
-          t.on("error", e => this.fireError(e));
+          t.on("error", (e) => this.fireError(e));
           t.on("close", () => this.fireClose);
         }
         write(e) {
@@ -1638,7 +1638,7 @@ module.exports = (function(e, t) {
           try {
             if (this.process.send) {
               this.sending = true;
-              this.process.send(e, undefined, undefined, t => {
+              this.process.send(e, undefined, undefined, (t) => {
                 this.sending = false;
                 if (t) {
                   this.errorCount++;
@@ -1666,7 +1666,7 @@ module.exports = (function(e, t) {
           this.sending = false;
           this.encoding = t;
           this.errorCount = 0;
-          this.socket.on("error", e => this.fireError(e));
+          this.socket.on("error", (e) => this.fireError(e));
           this.socket.on("close", () => this.fireClose());
         }
         write(e) {
@@ -1682,12 +1682,12 @@ module.exports = (function(e, t) {
           let n = [o, r.toString(), a, a];
           try {
             this.sending = true;
-            this.socket.write(n.join(""), "ascii", r => {
+            this.socket.write(n.join(""), "ascii", (r) => {
               if (r) {
                 this.handleError(r, e);
               }
               try {
-                this.socket.write(t, this.encoding, t => {
+                this.socket.write(t, this.encoding, (t) => {
                   this.sending = false;
                   if (t) {
                     this.handleError(t, e);
@@ -2371,7 +2371,7 @@ module.exports = (function(e, t) {
       }
       t.array = array;
       function stringArray(e) {
-        return array(e) && e.every(e => string(e));
+        return array(e) && e.every((e) => string(e));
       }
       t.stringArray = stringArray;
       function typedArray(e, t) {
@@ -2770,7 +2770,7 @@ module.exports = (function(e, t) {
             end: n[1],
             pre: r.slice(0, n[0]),
             body: r.slice(n[0] + e.length, n[1]),
-            post: r.slice(n[1] + t.length)
+            post: r.slice(n[1] + t.length),
           }
         );
       }
@@ -2834,11 +2834,11 @@ module.exports = (function(e, t) {
           r = e;
         });
         return new Promise((i, o) => {
-          let l = a.createServer(e => {
+          let l = a.createServer((e) => {
             l.close();
             r([
               new s.SocketMessageReader(e, t),
-              new u.SocketMessageWriter(e, t)
+              new u.SocketMessageWriter(e, t),
             ]);
           });
           l.on("error", o);
@@ -2847,7 +2847,7 @@ module.exports = (function(e, t) {
             i({
               onConnected: () => {
                 return n;
-              }
+              },
             });
           });
         });
@@ -2857,7 +2857,7 @@ module.exports = (function(e, t) {
         const r = a.createConnection(e);
         return [
           new s.SocketMessageReader(r, t),
-          new u.SocketMessageWriter(r, t)
+          new u.SocketMessageWriter(r, t),
         ];
       }
       t.createServerPipeTransport = createServerPipeTransport;
@@ -2938,7 +2938,7 @@ module.exports = (function(e, t) {
               targetUri: e,
               targetRange: t,
               targetSelectionRange: r,
-              originSelectionRange: n
+              originSelectionRange: n,
             };
           }
           e.create = create;
@@ -3301,7 +3301,7 @@ module.exports = (function(e, t) {
               return this._workspaceEdit;
             },
             enumerable: true,
-            configurable: true
+            configurable: true,
           });
           WorkspaceChange.prototype.getTextEditChange = function(e) {
             if (k.is(e)) {
@@ -3607,7 +3607,7 @@ module.exports = (function(e, t) {
               detail: t,
               kind: r,
               range: n,
-              selectionRange: i
+              selectionRange: i,
             };
             if (o !== void 0) {
               a.children = o;
@@ -3835,21 +3835,21 @@ module.exports = (function(e, t) {
               return this._uri;
             },
             enumerable: true,
-            configurable: true
+            configurable: true,
           });
           Object.defineProperty(FullTextDocument.prototype, "languageId", {
             get: function() {
               return this._languageId;
             },
             enumerable: true,
-            configurable: true
+            configurable: true,
           });
           Object.defineProperty(FullTextDocument.prototype, "version", {
             get: function() {
               return this._version;
             },
             enumerable: true,
-            configurable: true
+            configurable: true,
           });
           FullTextDocument.prototype.getText = function(e) {
             if (e) {
@@ -3927,7 +3927,7 @@ module.exports = (function(e, t) {
               return this.getLineOffsets().length;
             },
             enumerable: true,
-            configurable: true
+            configurable: true,
           });
           return FullTextDocument;
         })();
@@ -4274,7 +4274,7 @@ module.exports = (function(e, t) {
             s * r.blue() + u * n.blue(),
             r.alpha() * i + n.alpha() * (1 - i)
           );
-        }
+        },
       };
       Object.keys(i).forEach(function(e) {
         if (a.indexOf(e) !== -1) {
@@ -4699,7 +4699,7 @@ module.exports = (function(e, t) {
               V4UUID._randomHex(),
               V4UUID._randomHex(),
               V4UUID._randomHex(),
-              V4UUID._randomHex()
+              V4UUID._randomHex(),
             ].join("")
           );
         }
@@ -4727,7 +4727,7 @@ module.exports = (function(e, t) {
         "c",
         "d",
         "e",
-        "f"
+        "f",
       ];
       V4UUID._timeHighBits = ["8", "9", "a", "b"];
       t.empty = new ValueUUID("00000000-0000-0000-0000-000000000000");
@@ -4805,7 +4805,7 @@ module.exports = (function(e, t) {
             let c = isWindows() ? ";" : ":";
             let f = process.env;
             let p = Object.create(null);
-            Object.keys(f).forEach(e => (p[e] = f[e]));
+            Object.keys(f).forEach((e) => (p[e] = f[e]));
             if (p[r]) {
               p[r] = s.join(c) + c + p[r];
             } else {
@@ -4815,7 +4815,7 @@ module.exports = (function(e, t) {
             try {
               let r = a.fork(__dirname + "/resolve.js", [], {
                 env: p,
-                execArgv: []
+                execArgv: [],
               });
               if (r.pid === void 0) {
                 o(
@@ -4825,7 +4825,7 @@ module.exports = (function(e, t) {
                 );
                 return;
               }
-              r.on("message", e => {
+              r.on("message", (e) => {
                 if (e.command === "resolve") {
                   let i = t;
                   if (e.success) {
@@ -4865,12 +4865,12 @@ module.exports = (function(e, t) {
           "p.send({c:'r',s:false});",
           "}",
           "}",
-          "});"
+          "});",
         ].join("");
         return new Promise((u, l) => {
           let c = process.env;
           let f = Object.create(null);
-          Object.keys(c).forEach(e => (f[e] = c[e]));
+          Object.keys(c).forEach((e) => (f[e] = c[e]));
           if (t) {
             if (f[o]) {
               f[o] = t + i.delimiter + f[o];
@@ -4892,10 +4892,10 @@ module.exports = (function(e, t) {
               );
               return;
             }
-            t.on("error", e => {
+            t.on("error", (e) => {
               l(e);
             });
-            t.on("message", r => {
+            t.on("message", (r) => {
               if (r.c === "r") {
                 t.send({ c: "e" });
                 if (r.s) {
@@ -5024,7 +5024,7 @@ module.exports = (function(e, t) {
             r = i.join(e, r);
           }
           return resolve(t, r, r, n)
-            .then(e => {
+            .then((e) => {
               if (s.isParent(r, e)) {
                 return e;
               } else {
@@ -5033,7 +5033,7 @@ module.exports = (function(e, t) {
                 );
               }
             })
-            .then(undefined, r => {
+            .then(undefined, (r) => {
               return resolve(t, resolveGlobalNodePath(n), e, n);
             });
         } else {
@@ -5042,7 +5042,7 @@ module.exports = (function(e, t) {
       }
       t.resolveModulePath = resolveModulePath;
       function resolveModule2(e, t, r, n) {
-        return resolveModulePath(e, t, r, n).then(e => {
+        return resolveModulePath(e, t, r, n).then((e) => {
           if (n) {
             n(`Module ${t} got resolved to ${e}`);
           }
@@ -5065,7 +5065,7 @@ module.exports = (function(e, t) {
         "?": { open: "(?:", close: ")?" },
         "+": { open: "(?:", close: ")+" },
         "*": { open: "(?:", close: ")*" },
-        "@": { open: "(?:", close: ")" }
+        "@": { open: "(?:", close: ")" },
       };
       var s = "[^/]";
       var u = s + "*?";
@@ -5301,7 +5301,7 @@ module.exports = (function(e, t) {
                 start: b - 1,
                 reStart: n.length,
                 open: a[d].open,
-                close: a[d].close
+                close: a[d].close,
               });
               n += d === "!" ? "(?:(?!(?:" : "(?:";
               this.debug("plType %j %j", d, n);
@@ -5752,7 +5752,7 @@ module.exports = (function(e, t) {
           e.prefix || "tmp-",
           process.pid,
           _randomChars(12),
-          e.postfix || ""
+          e.postfix || "",
         ].join("");
         return i.join(e.dir || u, t);
       }
@@ -5843,7 +5843,7 @@ module.exports = (function(e, t) {
         return {
           name: o,
           fd: a,
-          removeCallback: _prepareTmpFileRemoveCallback(o, i ? -1 : a, r)
+          removeCallback: _prepareTmpFileRemoveCallback(o, i ? -1 : a, r),
         };
       }
       function _rmdirRecursiveSync(e) {
@@ -6052,7 +6052,7 @@ module.exports = (function(e, t) {
           "backgroundColor",
           "backgroundColors",
           "backgroundPosition",
-          "backgroundSize"
+          "backgroundSize",
         ],
         m: "margin",
         mx: "margin",
@@ -6067,7 +6067,7 @@ module.exports = (function(e, t) {
         "-mt": "negativeMargin",
         "-mr": "negativeMargin",
         "-mb": "negativeMargin",
-        "-ml": "negativeMargin"
+        "-ml": "negativeMargin",
       };
       let b;
       let w = [
@@ -6078,14 +6078,14 @@ module.exports = (function(e, t) {
         "scss",
         "stylus",
         "svelte",
-        "vue"
+        "vue",
       ];
       let C = [
         "javascript",
         "javascriptreact",
         "reason",
         "svelte",
-        "typescriptreact"
+        "typescriptreact",
       ];
       let S = [
         "blade",
@@ -6107,7 +6107,7 @@ module.exports = (function(e, t) {
         "svelte",
         "twig",
         "vue",
-        ...C
+        ...C,
       ];
       const k = [...w, ...S].filter((e, t, r) => r.indexOf(e) === t);
       function util_glob(e, t) {
@@ -6116,14 +6116,14 @@ module.exports = (function(e, t) {
             if (e) {
               return n(e);
             }
-            r(t.map(e => f["resolve"](e)));
+            r(t.map((e) => f["resolve"](e)));
           });
         });
       }
       function globSingle(e, t) {
         return new Promise((r, n) => {
           let i = new o.a.Glob(e, t);
-          i.on("match", e => {
+          i.on("match", (e) => {
             i.abort();
             r(f["resolve"](e));
           });
@@ -6135,7 +6135,7 @@ module.exports = (function(e, t) {
         return new Promise((r, n) => {
           u.a.file(t, (t, i) => {
             if (t) return n(t);
-            a["writeFile"](i, e, { encoding: "utf8" }, e => {
+            a["writeFile"](i, e, { encoding: "utf8" }, (e) => {
               if (e) return n(e);
               r(i);
             });
@@ -6145,13 +6145,13 @@ module.exports = (function(e, t) {
       function getClassNameAtPosition(e, t) {
         const r = {
           start: { line: Math.max(t.line - 5, 0), character: 0 },
-          end: t
+          end: t,
         };
         const n = e.getText(r);
         if (!/\bclass(Name)?[= ](?:\[%tw )?["'][^"']*$/.test(n)) return null;
         const i = {
           start: { line: Math.max(t.line - 5, 0), character: 0 },
-          end: { line: t.line + 1, character: t.character }
+          end: { line: t.line + 1, character: t.character },
         };
         const o = e.getText(i);
         let a = n + o.substr(n.length).match(/^([^"' ]*)/)[0];
@@ -6162,9 +6162,9 @@ module.exports = (function(e, t) {
           let r = {
             start: {
               line: t.line,
-              character: t.character + a.length - n.length - e.length
+              character: t.character + a.length - n.length - e.length,
             },
-            end: { line: t.line, character: t.character + a.length - n.length }
+            end: { line: t.line, character: t.character + a.length - n.length },
           };
           return { className: e, range: r };
         }
@@ -6190,24 +6190,24 @@ module.exports = (function(e, t) {
         if (n.length === 1) {
           return c()(e.tree, [t, "__rule"]) === true ? [t] : null;
         }
-        let i = combinations("123456789".substr(0, n.length - 1)).map(e =>
-          e.split("").map(e => parseInt(e, 10))
+        let i = combinations("123456789".substr(0, n.length - 1)).map((e) =>
+          e.split("").map((e) => parseInt(e, 10))
         );
         let o = [
           [t],
-          ...i.map(e => {
+          ...i.map((e) => {
             let t = [];
             let r = 0;
-            e.forEach(e => {
+            e.forEach((e) => {
               t.push(n.slice(r, e).join("-"));
               r = e;
             });
             t.push(n.slice(r).join("-"));
             return t;
-          })
+          }),
         ];
         let a = null;
-        o.some(t => {
+        o.some((t) => {
           if (c()(e.tree, [...t, "__rule"]) === true) {
             a = t;
             return true;
@@ -6218,7 +6218,7 @@ module.exports = (function(e, t) {
       }
       function getConfigKeyByClassName(e) {
         let t = null;
-        Object.keys(_).some(r => {
+        Object.keys(_).some((r) => {
           if (e.startsWith(r + "-")) {
             t = [_[r], e.substr(r.length + 1)];
             return true;
@@ -6264,7 +6264,7 @@ module.exports = (function(e, t) {
           return new Promise((e, r) => {
             b.on(
               "message",
-              g()(t => {
+              g()((t) => {
                 if (t === null) {
                   return r();
                 }
@@ -6274,13 +6274,13 @@ module.exports = (function(e, t) {
                   range: {
                     start: {
                       line: parseInt(n[1], 10),
-                      character: parseInt(n[2], 10)
+                      character: parseInt(n[2], 10),
                     },
                     end: {
                       line: parseInt(n[3], 10),
-                      character: parseInt(n[4], 10)
-                    }
-                  }
+                      character: parseInt(n[4], 10),
+                    },
+                  },
                 });
               })
             );
@@ -6325,10 +6325,10 @@ module.exports = (function(e, t) {
           return `@media ${e.raw}`;
         }
         let t = (Array.isArray(e) ? e : [e])
-          .map(e => {
+          .map((e) => {
             return [
               typeof e.min === "string" ? `(min-width: ${e.min})` : null,
-              typeof e.max === "string" ? `(max-width: ${e.max})` : null
+              typeof e.max === "string" ? `(max-width: ${e.max})` : null,
             ]
               .filter(Boolean)
               .join(" and ");
@@ -6341,7 +6341,7 @@ module.exports = (function(e, t) {
         if (typeof e === "number") return e.toString();
         if (Array.isArray(e)) {
           return e
-            .filter(e => typeof e === "string")
+            .filter((e) => typeof e === "string")
             .filter(Boolean)
             .join(", ");
         }
@@ -6380,7 +6380,7 @@ module.exports = (function(e, t) {
         let r = e.getText(t);
         let n = t ? e.offsetAt(t.start) : 0;
         let i = find(/(@apply\s+)[^;]+;/g, r);
-        return i.map(t => {
+        return i.map((t) => {
           let r = n + t.index + t[1].length;
           let i = n + t.index + t[0].length - 1;
           let o = { start: e.positionAt(r), end: e.positionAt(i) };
@@ -6392,7 +6392,7 @@ module.exports = (function(e, t) {
         let n = t ? e.offsetAt(t.start) : 0;
         let i = find(/\bclass(Name)?[= ](?:\[%tw )?(['"{])/g, r);
         return flatten(
-          i.map(t => {
+          i.map((t) => {
             if (t[2] === "{") {
               let i = 1;
               let o = t.index + t[0].length;
@@ -6422,7 +6422,7 @@ module.exports = (function(e, t) {
                     range: s,
                     startIndex: i,
                     endIndex: a,
-                    text: e.getText(s)
+                    text: e.getText(s),
                   };
                 });
               }
@@ -6464,7 +6464,7 @@ module.exports = (function(e, t) {
                     text: e.getText(t),
                     range: t,
                     startIndex: s,
-                    endIndex: u
+                    endIndex: u,
                   };
                 }
               }
@@ -6476,26 +6476,26 @@ module.exports = (function(e, t) {
         return [].concat.apply([], e);
       }
       function entries(e) {
-        return Object.keys(e).map(t => [t, e[t]]);
+        return Object.keys(e).map((t) => [t, e[t]]);
       }
       function getProperties(e) {
-        if (Object.keys(e).some(t => typeof e[t] === "string")) {
+        if (Object.keys(e).some((t) => typeof e[t] === "string")) {
           let { __rule: t, __pseudo: r } = e,
             n = y(e, ["__rule", "__pseudo"]);
           return n;
         }
         return getProperties(
-          e[Object.keys(e).filter(e => e !== "__rule" && e !== "__pseudo")[0]]
+          e[Object.keys(e).filter((e) => e !== "__rule" && e !== "__pseudo")[0]]
         );
       }
       function getPropertiesWithVariants(e, t = []) {
-        if (Object.keys(e).some(t => typeof e[t] === "string")) {
+        if (Object.keys(e).some((t) => typeof e[t] === "string")) {
           let { __rule: r, __pseudo: n } = e,
             i = y(e, ["__rule", "__pseudo"]);
           return [t, i];
         }
         let r = Object.keys(e).filter(
-          e => e !== "__rule" && e !== "__pseudo"
+          (e) => e !== "__rule" && e !== "__pseudo"
         )[0];
         t.push(r);
         return getPropertiesWithVariants(e[r], t);
@@ -6659,7 +6659,7 @@ module.exports = (function(e, t) {
         "var",
         "video",
         "wbr",
-        "xmp"
+        "xmp",
       ];
       var x = R;
       const M = ["hover", "active", "focus", "focus-within", "group-hover"];
@@ -6699,21 +6699,21 @@ module.exports = (function(e, t) {
           items: [
             [
               "tailwind",
-              "Use the @tailwind directive to insert Tailwind’s preflight, utilities and screens styles into your CSS."
+              "Use the @tailwind directive to insert Tailwind’s preflight, utilities and screens styles into your CSS.",
             ],
             [
               "variants",
-              "You can generate responsive, hover, focus, active, and group-hover versions of your own utilities by wrapping their definitions in the @variants directive."
+              "You can generate responsive, hover, focus, active, and group-hover versions of your own utilities by wrapping their definitions in the @variants directive.",
             ],
             [
               "responsive",
-              "You can generate responsive versions of your own classes by wrapping their definitions in the @responsive directive."
+              "You can generate responsive versions of your own classes by wrapping their definitions in the @responsive directive.",
             ],
             [
               "screen",
-              "The @screen directive allows you to create media queries that reference your breakpoints by name instead of duplicating their values in your own CSS."
-            ]
-          ].map(e => ({
+              "The @screen directive allows you to create media queries that reference your breakpoints by name instead of duplicating their values in your own CSS.",
+            ],
+          ].map((e) => ({
             label: `@${e[0]}`,
             detail: "Tailwind CSS Directive",
             documentation: e[1],
@@ -6722,10 +6722,10 @@ module.exports = (function(e, t) {
               newText: `@${e[0]}`,
               range: {
                 start: { line: r.line, character: s[0][1].length },
-                end: r
-              }
-            }
-          }))
+                end: r,
+              },
+            },
+          })),
         };
       }
       function provideVariantCompletions(e, t, r, i, o) {
@@ -6741,8 +6741,8 @@ module.exports = (function(e, t) {
         return {
           isIncomplete: false,
           items: e.variants
-            .filter(e => u.indexOf(e) === -1)
-            .map(e => ({
+            .filter((e) => u.indexOf(e) === -1)
+            .map((e) => ({
               label: e,
               kind: n["CompletionItemKind"].Keyword,
               textEdit: {
@@ -6750,12 +6750,12 @@ module.exports = (function(e, t) {
                 range: {
                   start: {
                     line: r.line,
-                    character: u.slice(0, u.length - 1).join("").length
+                    character: u.slice(0, u.length - 1).join("").length,
                   },
-                  end: r
-                }
-              }
-            }))
+                  end: r,
+                },
+              },
+            })),
         };
       }
       function shouldProvideAtScreenCompletions(e, t, r) {
@@ -6767,11 +6767,11 @@ module.exports = (function(e, t) {
         if (!shouldProvideAtScreenCompletions(t, r, i)) return O;
         return {
           isIncomplete: false,
-          items: Object.keys(e.screens).map(t => ({
+          items: Object.keys(e.screens).map((t) => ({
             label: t,
             kind: n["CompletionItemKind"].Constant,
-            detail: stringifyScreen(e.screens[t])
-          }))
+            detail: stringifyScreen(e.screens[t]),
+          })),
         };
       }
       function shouldProvideConfigHelperCompletions(e, t, r) {
@@ -6807,13 +6807,13 @@ module.exports = (function(e, t) {
                 range: {
                   start: {
                     line: r.line,
-                    character: r.character - l[l.length - 1].length
+                    character: r.character - l[l.length - 1].length,
                   },
-                  end: r
-                }
-              }
+                  end: r,
+                },
+              },
             };
-          })
+          }),
         };
       }
       function classNameToCompletions(e, t, r) {
@@ -6823,7 +6823,7 @@ module.exports = (function(e, t) {
         let a;
         let s = {
           start: { line: r.line, character: r.character - e.length },
-          end: r
+          end: r,
         };
         for (let u = i.length - 1; u > 0; u--) {
           let l = i.slice(0, u).filter(Boolean);
@@ -6836,19 +6836,19 @@ module.exports = (function(e, t) {
           }
         }
         let u = Object.keys(o ? a : t.tree)
-          .filter(e => (o ? a : t.tree)[e].__rule === true)
+          .filter((e) => (o ? a : t.tree)[e].__rule === true)
           .map((e, r) =>
             toCompletionItem(o ? a : t.tree, e, r, {
-              textEdit: { newText: e, range: s }
+              textEdit: { newText: e, range: s },
             })
           );
         return {
           isIncomplete: false,
           items: u.concat(
             Object.keys(o ? a : t.tree)
-              .filter(e => !(o ? a : t.tree)[e].__rule)
+              .filter((e) => !(o ? a : t.tree)[e].__rule)
               .map((e, r) => toVariantCompletionItem(t, e, u.length + r))
-          )
+          ),
         };
       }
       function provideEmmetClassNameCompletions(e, t, r, n, i) {
@@ -6858,7 +6858,7 @@ module.exports = (function(e, t) {
         let o = t.getText({ start: { line: r.line, character: 0 }, end: r });
         if (
           /\./.test(o) &&
-          new RegExp(`^\\s*(${x.map(e => `${e}\\b`).join("|")}|\\.)`).test(o)
+          new RegExp(`^\\s*(${x.map((e) => `${e}\\b`).join("|")}|\\.)`).test(o)
         ) {
           return classNameToCompletions(o.split(".").pop(), e, r);
         }
@@ -6880,10 +6880,16 @@ module.exports = (function(e, t) {
           let e = /@apply\s+[^;]*$/.test(o);
           if (e || !n) return e;
         }
-        let a = find(/\bclass(Name)?[= ](?:\[%tw )?(['"{])/g, o);
+        // https://github.com/iamcco/coc-tailwindcss/issues/34
+        let a = find(
+          /\b(class(?:Name)?|tw|(?:styled|tw)\.\w+|(?:styled|tw)\(\w+\))[= ]?(?:\[%tw )?([`'"{])/g,
+          o
+        );
+
         if (a.length > 0) {
           let e = a[a.length - 1];
-          let t = e.index + 7 + (e[1] ? e[1].length : 0);
+          let t = e.index + e[1].length + 2;
+
           if (e[2] === "{") {
             let e = 1;
             let r = true;
@@ -6927,12 +6933,12 @@ module.exports = (function(e, t) {
           kind: n["CompletionItemKind"].Constant,
           detail: o,
           sortText: naturalExpand(r),
-          command: { title: "", command: "editor.action.triggerSuggest" }
+          command: { title: "", command: "editor.action.triggerSuggest" },
         };
       }
       function stringify(e) {
         return Object.keys(e)
-          .filter(e => e !== "__rule" && e !== "__pseudo")
+          .filter((e) => e !== "__rule" && e !== "__pseudo")
           .reduce((t, r) => {
             return `${t} ${r}: ${e[r]};`;
           }, "");
@@ -6951,7 +6957,7 @@ module.exports = (function(e, t) {
               : n["CompletionItemKind"].Constant,
             detail: stringify(o),
             documentation: a ? a : undefined,
-            sortText: naturalExpand(r)
+            sortText: naturalExpand(r),
           },
           i
         );
@@ -6994,9 +7000,9 @@ module.exports = (function(e, t) {
             value: d.reduce((e, t) => {
               let r = "  ".repeat(d.length - 1);
               return `${r}${t} {\n${e}\n${r}}`;
-            }, `${"  ".repeat(d.length)}.${appendPseudos(D()(a), p)} {\n${stringifyCss(v, d.length + 1)}\n${"  ".repeat(d.length)}}`)
+            }, `${"  ".repeat(d.length)}.${appendPseudos(D()(a), p)} {\n${stringifyCss(v, d.length + 1)}\n${"  ".repeat(d.length)}}`),
           },
-          range: s
+          range: s,
         };
       }
       var P = r(903);
@@ -7071,7 +7077,7 @@ module.exports = (function(e, t) {
         variants: null,
         screens: null,
         separator: null,
-        settings: { emmetCompletions: false }
+        settings: { emmetCompletions: false },
       };
       L.documents.listen(L.connection);
       function init() {
@@ -7098,7 +7104,7 @@ module.exports = (function(e, t) {
             configPath: L.tailwindConfigPath,
             pluginPath: L.tailwindModulePath,
             tree: true,
-            strings: false
+            strings: false,
           });
           L.tailwindVersion = t.version;
           L.tree = t.classNames;
@@ -7114,7 +7120,7 @@ module.exports = (function(e, t) {
           console.log(t.configDependencies);
         });
       }
-      L.connection.onInitialize(e =>
+      L.connection.onInitialize((e) =>
         T(undefined, void 0, void 0, function*() {
           if (!e.rootPath && !e.rootUri) {
             return { capabilities: {} };
@@ -7128,10 +7134,10 @@ module.exports = (function(e, t) {
                 textDocumentSync: L.documents.syncKind,
                 completionProvider: {
                   resolveProvider: false,
-                  triggerCharacters: ["'", '"', ".", " ", L.separator]
+                  triggerCharacters: ["'", '"', ".", " ", L.separator],
                 },
-                hoverProvider: true
-              }
+                hoverProvider: true,
+              },
             };
           } catch (e) {
             return { capabilities: {} };
@@ -7141,7 +7147,7 @@ module.exports = (function(e, t) {
       L.connection.onInitialized &&
         L.connection.onInitialized(() => {
           L.connection.sendNotification("tailwindcss/foundConfig", [
-            L.tailwindConfig
+            L.tailwindConfig,
           ]);
           L.connection.client.register(
             n["DidChangeConfigurationNotification"].type,
@@ -7149,7 +7155,7 @@ module.exports = (function(e, t) {
           );
           getSettings();
         });
-      L.connection.onNotification("tailwindcss/findDefinition", e =>
+      L.connection.onNotification("tailwindcss/findDefinition", (e) =>
         T(undefined, void 0, void 0, function*() {
           try {
             let t = yield findDefinition(L, e);
@@ -7168,7 +7174,7 @@ module.exports = (function(e, t) {
           try {
             yield init();
             L.connection.sendNotification("tailwindcss/foundConfig", [
-              L.tailwindConfig
+              L.tailwindConfig,
             ]);
           } catch (e) {}
         })
@@ -7180,9 +7186,9 @@ module.exports = (function(e, t) {
             emmetCompletions: e = false,
             cssLanguages: cssl = w,
             jsLanguages: jsl = C,
-            htmlLanguages: htmll = S
+            htmlLanguages: htmll = S,
           } = yield L.connection.workspace.getConfiguration({
-            section: "tailwindCSS"
+            section: "tailwindCSS",
           });
           L.settings = { emmetCompletions: e };
           w = cssl;
@@ -7202,8 +7208,8 @@ module.exports = (function(e, t) {
               value: e,
               enumerable: false,
               writable: true,
-              configurable: true
-            }
+              configurable: true,
+            },
           });
         };
       } else {
@@ -7252,7 +7258,7 @@ module.exports = (function(e, t) {
         ansi256: { channels: 1, labels: ["ansi256"] },
         hcg: { channels: 3, labels: ["h", "c", "g"] },
         apple: { channels: 3, labels: ["r16", "g16", "b16"] },
-        gray: { channels: 1, labels: ["gray"] }
+        gray: { channels: 1, labels: ["gray"] },
       });
       for (var s in a) {
         if (a.hasOwnProperty(s)) {
@@ -7874,7 +7880,7 @@ module.exports = (function(e, t) {
         return [
           (r * i[0] + u) * 255,
           (r * i[1] + u) * 255,
-          (r * i[2] + u) * 255
+          (r * i[2] + u) * 255,
         ];
       };
       a.hcg.hsv = function(e) {
@@ -7920,14 +7926,14 @@ module.exports = (function(e, t) {
         return [
           (e[0] / 65535) * 255,
           (e[1] / 65535) * 255,
-          (e[2] / 65535) * 255
+          (e[2] / 65535) * 255,
         ];
       };
       a.rgb.apple = function(e) {
         return [
           (e[0] / 255) * 65535,
           (e[1] / 255) * 65535,
-          (e[2] / 255) * 65535
+          (e[2] / 255) * 65535,
         ];
       };
       a.gray.rgb = function(e) {
@@ -8097,7 +8103,7 @@ module.exports = (function(e, t) {
                   ) {
                     this._options.onLastListenerRemove(this);
                   }
-                }
+                },
               };
               if (Array.isArray(r)) {
                 r.push(n);
@@ -8170,7 +8176,7 @@ module.exports = (function(e, t) {
       }
       t.array = array;
       function stringArray(e) {
-        return array(e) && e.every(e => string(e));
+        return array(e) && e.every((e) => string(e));
       }
       t.stringArray = stringArray;
       function typedArray(e, t) {
@@ -8194,11 +8200,11 @@ module.exports = (function(e, t) {
           r = e;
         });
         return new Promise((s, u) => {
-          let l = n.createServer(e => {
+          let l = n.createServer((e) => {
             l.close();
             r([
               new i.SocketMessageReader(e, t),
-              new o.SocketMessageWriter(e, t)
+              new o.SocketMessageWriter(e, t),
             ]);
           });
           l.on("error", u);
@@ -8207,7 +8213,7 @@ module.exports = (function(e, t) {
             s({
               onConnected: () => {
                 return a;
-              }
+              },
             });
           });
         });
@@ -8217,7 +8223,7 @@ module.exports = (function(e, t) {
         const r = n.createConnection(e, "127.0.0.1");
         return [
           new i.SocketMessageReader(r, t),
-          new o.SocketMessageWriter(r, t)
+          new o.SocketMessageWriter(r, t),
         ];
       }
       t.createServerSocketTransport = createServerSocketTransport;
@@ -8318,7 +8324,7 @@ module.exports = (function(e, t) {
           return this._documents[e];
         }
         all() {
-          return Object.keys(this._documents).map(e => this._documents[e]);
+          return Object.keys(this._documents).map((e) => this._documents[e]);
         }
         keys() {
           return Object.keys(this._documents);
@@ -8328,7 +8334,7 @@ module.exports = (function(e, t) {
             return a.func(e.update);
           }
           e.__textDocumentSync = n.TextDocumentSyncKind.Full;
-          e.onDidOpenTextDocument(e => {
+          e.onDidOpenTextDocument((e) => {
             let t = e.textDocument;
             let r = n.TextDocument.create(
               t.uri,
@@ -8341,7 +8347,7 @@ module.exports = (function(e, t) {
             this._onDidOpen.fire(i);
             this._onDidChangeContent.fire(i);
           });
-          e.onDidChangeTextDocument(e => {
+          e.onDidChangeTextDocument((e) => {
             let t = e.textDocument;
             let r = e.contentChanges;
             let n = r.length > 0 ? r[r.length - 1] : undefined;
@@ -8358,14 +8364,14 @@ module.exports = (function(e, t) {
               }
             }
           });
-          e.onDidCloseTextDocument(e => {
+          e.onDidCloseTextDocument((e) => {
             let t = this._documents[e.textDocument.uri];
             if (t) {
               delete this._documents[e.textDocument.uri];
               this._onDidClose.fire(Object.freeze({ document: t }));
             }
           });
-          e.onWillSaveTextDocument(e => {
+          e.onWillSaveTextDocument((e) => {
             let t = this._documents[e.textDocument.uri];
             if (t) {
               this._onWillSave.fire(
@@ -8384,7 +8390,7 @@ module.exports = (function(e, t) {
               return [];
             }
           });
-          e.onDidSaveTextDocument(e => {
+          e.onDidSaveTextDocument((e) => {
             let t = this._documents[e.textDocument.uri];
             if (t) {
               this._onDidSave.fire(Object.freeze({ document: t }));
@@ -8406,7 +8412,7 @@ module.exports = (function(e, t) {
           this._messages[e] = t;
         }
         sendErrors(e) {
-          Object.keys(this._messages).forEach(t => {
+          Object.keys(this._messages).forEach((t) => {
             e.window.showErrorMessage(t);
           });
         }
@@ -8433,7 +8439,7 @@ module.exports = (function(e, t) {
           this._registrations.push({
             id: n,
             method: r,
-            registerOptions: t || {}
+            registerOptions: t || {},
           });
           this._registered.add(r);
         }
@@ -8452,7 +8458,7 @@ module.exports = (function(e, t) {
         constructor(e, t) {
           this._connection = e;
           this._unregistrations = new Map();
-          t.forEach(e => {
+          t.forEach((e) => {
             this._unregistrations.set(e.method, e);
           });
         }
@@ -8473,7 +8479,7 @@ module.exports = (function(e, t) {
           let t = { unregisterations: e };
           this._connection
             .sendRequest(n.UnregistrationRequest.type, t)
-            .then(undefined, e => {
+            .then(undefined, (e) => {
               this._connection.console.info(`Bulk unregistration failed.`);
             });
         }
@@ -8488,7 +8494,7 @@ module.exports = (function(e, t) {
             () => {
               this._unregistrations.delete(t);
             },
-            e => {
+            (e) => {
               this._connection.console.info(
                 `Unregistering request handler for ${r.id} failed.`
               );
@@ -8591,7 +8597,7 @@ module.exports = (function(e, t) {
           const i = a.string(t) ? t : t.method;
           const o = s.generateUuid();
           let u = {
-            registrations: [{ id: o, method: i, registerOptions: r || {} }]
+            registrations: [{ id: o, method: i, registerOptions: r || {} }],
           };
           if (!e.isAttached) {
             e.attach(this._connection);
@@ -8599,11 +8605,11 @@ module.exports = (function(e, t) {
           return this._connection
             .sendRequest(n.RegistrationRequest.type, u)
             .then(
-              t => {
+              (t) => {
                 e.add({ id: o, method: i });
                 return e;
               },
-              e => {
+              (e) => {
                 this.connection.console.info(
                   `Registering request handler for ${i} failed.`
                 );
@@ -8615,17 +8621,17 @@ module.exports = (function(e, t) {
           const r = a.string(e) ? e : e.method;
           const i = s.generateUuid();
           let o = {
-            registrations: [{ id: i, method: r, registerOptions: t || {} }]
+            registrations: [{ id: i, method: r, registerOptions: t || {} }],
           };
           return this._connection
             .sendRequest(n.RegistrationRequest.type, o)
             .then(
-              e => {
+              (e) => {
                 return n.Disposable.create(() => {
                   this.unregisterSingle(i, r);
                 });
               },
-              e => {
+              (e) => {
                 this.connection.console.info(
                   `Registering request handler for ${r} failed.`
                 );
@@ -8637,7 +8643,7 @@ module.exports = (function(e, t) {
           let r = { unregisterations: [{ id: e, method: t }] };
           return this._connection
             .sendRequest(n.UnregistrationRequest.type, r)
-            .then(undefined, t => {
+            .then(undefined, (t) => {
               this.connection.console.info(
                 `Unregistering request handler for ${e} failed.`
               );
@@ -8651,12 +8657,12 @@ module.exports = (function(e, t) {
               () => {
                 return new BulkUnregistrationImpl(
                   this._connection,
-                  t.registrations.map(e => {
+                  t.registrations.map((e) => {
                     return { id: e.id, method: e.method };
                   })
                 );
               },
-              e => {
+              (e) => {
                 this.connection.console.info(`Bulk registration failed.`);
                 return Promise.reject(e);
               }
@@ -8714,7 +8720,7 @@ module.exports = (function(e, t) {
           }
           this._connection.sendNotification(n.LogTraceNotification.type, {
             message: e,
-            verbose: this._trace === n.Trace.Verbose ? t : undefined
+            verbose: this._trace === n.Trace.Verbose ? t : undefined,
           });
         }
       }
@@ -8795,7 +8801,11 @@ module.exports = (function(e, t) {
           ),
           client: combine(e.client, t.client, combineClientFeatures),
           window: combine(e.window, t.window, combineWindowFeatures),
-          workspace: combine(e.workspace, t.workspace, combineWorkspaceFeatures)
+          workspace: combine(
+            e.workspace,
+            t.workspace,
+            combineWorkspaceFeatures
+          ),
         };
         return r;
       }
@@ -8926,11 +8936,11 @@ module.exports = (function(e, t) {
             }
           },
           onNotification: (e, t) => l.onNotification(e, t),
-          onInitialize: e => (b = e),
-          onInitialized: e =>
+          onInitialize: (e) => (b = e),
+          onInitialized: (e) =>
             l.onNotification(n.InitializedNotification.type, e),
-          onShutdown: e => (_ = e),
-          onExit: e => (w = e),
+          onShutdown: (e) => (_ = e),
+          onExit: (e) => (w = e),
           get console() {
             return u;
           },
@@ -8949,64 +8959,66 @@ module.exports = (function(e, t) {
           get workspace() {
             return m;
           },
-          onDidChangeConfiguration: e =>
+          onDidChangeConfiguration: (e) =>
             l.onNotification(n.DidChangeConfigurationNotification.type, e),
-          onDidChangeWatchedFiles: e =>
+          onDidChangeWatchedFiles: (e) =>
             l.onNotification(n.DidChangeWatchedFilesNotification.type, e),
           __textDocumentSync: undefined,
-          onDidOpenTextDocument: e =>
+          onDidOpenTextDocument: (e) =>
             l.onNotification(n.DidOpenTextDocumentNotification.type, e),
-          onDidChangeTextDocument: e =>
+          onDidChangeTextDocument: (e) =>
             l.onNotification(n.DidChangeTextDocumentNotification.type, e),
-          onDidCloseTextDocument: e =>
+          onDidCloseTextDocument: (e) =>
             l.onNotification(n.DidCloseTextDocumentNotification.type, e),
-          onWillSaveTextDocument: e =>
+          onWillSaveTextDocument: (e) =>
             l.onNotification(n.WillSaveTextDocumentNotification.type, e),
-          onWillSaveTextDocumentWaitUntil: e =>
+          onWillSaveTextDocumentWaitUntil: (e) =>
             l.onRequest(n.WillSaveTextDocumentWaitUntilRequest.type, e),
-          onDidSaveTextDocument: e =>
+          onDidSaveTextDocument: (e) =>
             l.onNotification(n.DidSaveTextDocumentNotification.type, e),
-          sendDiagnostics: e =>
+          sendDiagnostics: (e) =>
             l.sendNotification(n.PublishDiagnosticsNotification.type, e),
-          onHover: e => l.onRequest(n.HoverRequest.type, e),
-          onCompletion: e => l.onRequest(n.CompletionRequest.type, e),
-          onCompletionResolve: e =>
+          onHover: (e) => l.onRequest(n.HoverRequest.type, e),
+          onCompletion: (e) => l.onRequest(n.CompletionRequest.type, e),
+          onCompletionResolve: (e) =>
             l.onRequest(n.CompletionResolveRequest.type, e),
-          onSignatureHelp: e => l.onRequest(n.SignatureHelpRequest.type, e),
-          onDeclaration: e => l.onRequest(n.DeclarationRequest.type, e),
-          onDefinition: e => l.onRequest(n.DefinitionRequest.type, e),
-          onTypeDefinition: e => l.onRequest(n.TypeDefinitionRequest.type, e),
-          onImplementation: e => l.onRequest(n.ImplementationRequest.type, e),
-          onReferences: e => l.onRequest(n.ReferencesRequest.type, e),
-          onDocumentHighlight: e =>
+          onSignatureHelp: (e) => l.onRequest(n.SignatureHelpRequest.type, e),
+          onDeclaration: (e) => l.onRequest(n.DeclarationRequest.type, e),
+          onDefinition: (e) => l.onRequest(n.DefinitionRequest.type, e),
+          onTypeDefinition: (e) => l.onRequest(n.TypeDefinitionRequest.type, e),
+          onImplementation: (e) => l.onRequest(n.ImplementationRequest.type, e),
+          onReferences: (e) => l.onRequest(n.ReferencesRequest.type, e),
+          onDocumentHighlight: (e) =>
             l.onRequest(n.DocumentHighlightRequest.type, e),
-          onDocumentSymbol: e => l.onRequest(n.DocumentSymbolRequest.type, e),
-          onWorkspaceSymbol: e => l.onRequest(n.WorkspaceSymbolRequest.type, e),
-          onCodeAction: e => l.onRequest(n.CodeActionRequest.type, e),
-          onCodeLens: e => l.onRequest(n.CodeLensRequest.type, e),
-          onCodeLensResolve: e => l.onRequest(n.CodeLensResolveRequest.type, e),
-          onDocumentFormatting: e =>
+          onDocumentSymbol: (e) => l.onRequest(n.DocumentSymbolRequest.type, e),
+          onWorkspaceSymbol: (e) =>
+            l.onRequest(n.WorkspaceSymbolRequest.type, e),
+          onCodeAction: (e) => l.onRequest(n.CodeActionRequest.type, e),
+          onCodeLens: (e) => l.onRequest(n.CodeLensRequest.type, e),
+          onCodeLensResolve: (e) =>
+            l.onRequest(n.CodeLensResolveRequest.type, e),
+          onDocumentFormatting: (e) =>
             l.onRequest(n.DocumentFormattingRequest.type, e),
-          onDocumentRangeFormatting: e =>
+          onDocumentRangeFormatting: (e) =>
             l.onRequest(n.DocumentRangeFormattingRequest.type, e),
-          onDocumentOnTypeFormatting: e =>
+          onDocumentOnTypeFormatting: (e) =>
             l.onRequest(n.DocumentOnTypeFormattingRequest.type, e),
-          onRenameRequest: e => l.onRequest(n.RenameRequest.type, e),
-          onPrepareRename: e => l.onRequest(n.PrepareRenameRequest.type, e),
-          onDocumentLinks: e => l.onRequest(n.DocumentLinkRequest.type, e),
-          onDocumentLinkResolve: e =>
+          onRenameRequest: (e) => l.onRequest(n.RenameRequest.type, e),
+          onPrepareRename: (e) => l.onRequest(n.PrepareRenameRequest.type, e),
+          onDocumentLinks: (e) => l.onRequest(n.DocumentLinkRequest.type, e),
+          onDocumentLinkResolve: (e) =>
             l.onRequest(n.DocumentLinkResolveRequest.type, e),
-          onDocumentColor: e => l.onRequest(n.DocumentColorRequest.type, e),
-          onColorPresentation: e =>
+          onDocumentColor: (e) => l.onRequest(n.DocumentColorRequest.type, e),
+          onColorPresentation: (e) =>
             l.onRequest(n.ColorPresentationRequest.type, e),
-          onFoldingRanges: e => l.onRequest(n.FoldingRangeRequest.type, e),
-          onExecuteCommand: e => l.onRequest(n.ExecuteCommandRequest.type, e),
-          dispose: () => l.dispose()
+          onFoldingRanges: (e) => l.onRequest(n.FoldingRangeRequest.type, e),
+          onExecuteCommand: (e) => l.onRequest(n.ExecuteCommandRequest.type, e),
+          dispose: () => l.dispose(),
         };
         for (let e of y) {
           e.attach(C);
         }
-        l.onRequest(n.InitializeRequest.type, e => {
+        l.onRequest(n.InitializeRequest.type, (e) => {
           const t = e.processId;
           if (a.number(t) && f === void 0) {
             setInterval(() => {
@@ -9025,7 +9037,7 @@ module.exports = (function(e, t) {
           }
           if (b) {
             let t = b(e, new n.CancellationTokenSource().token);
-            return asThenable(t).then(e => {
+            return asThenable(t).then((e) => {
               if (e instanceof n.ResponseError) {
                 return e;
               }
@@ -9060,7 +9072,7 @@ module.exports = (function(e, t) {
             });
           } else {
             let e = {
-              capabilities: { textDocumentSync: n.TextDocumentSyncKind.None }
+              capabilities: { textDocumentSync: n.TextDocumentSyncKind.None },
             };
             for (let t of y) {
               t.fillServerCapabilities(e.capabilities);
@@ -9089,7 +9101,7 @@ module.exports = (function(e, t) {
             }
           }
         });
-        l.onNotification(n.SetTraceNotification.type, e => {
+        l.onNotification(n.SetTraceNotification.type, (e) => {
           p.trace = n.Trace.fromString(e.value);
         });
         return C;
@@ -9166,8 +9178,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -9248,8 +9260,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -9278,7 +9290,7 @@ module.exports = (function(e, t) {
                       "Node#_value was deprecated. Use Node#raws.value"
                     );
                     this.raws.value = e;
-                  }
+                  },
                 },
                 {
                   key: "_important",
@@ -9293,8 +9305,8 @@ module.exports = (function(e, t) {
                       "Node#_important was deprecated. Use Node#raws.important"
                     );
                     this.raws.important = e;
-                  }
-                }
+                  },
+                },
               ]);
               return Declaration;
             })(s.default);
@@ -9388,8 +9400,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -9895,15 +9907,15 @@ module.exports = (function(e, t) {
                   get: function get() {
                     if (!this.nodes) return undefined;
                     return this.nodes[0];
-                  }
+                  },
                 },
                 {
                   key: "last",
                   get: function get() {
                     if (!this.nodes) return undefined;
                     return this.nodes[this.nodes.length - 1];
-                  }
-                }
+                  },
+                },
               ]);
               return Container;
             })(l.default);
@@ -9935,7 +9947,7 @@ module.exports = (function(e, t) {
                 e[t] = {
                   get: function() {
                     return build.call(this, this._styles.concat(t));
-                  }
+                  },
                 };
               });
               return e;
@@ -9981,7 +9993,7 @@ module.exports = (function(e, t) {
                 e[t] = {
                   get: function() {
                     return build.call(this, [t]);
-                  }
+                  },
                 };
               });
               return e;
@@ -10022,7 +10034,7 @@ module.exports = (function(e, t) {
               "[": l.yellow,
               "]": l.yellow,
               ":": l.yellow,
-              ";": l.yellow
+              ";": l.yellow,
             };
             function getTokenType(e, t, r) {
               var n = e[0],
@@ -10114,8 +10126,8 @@ module.exports = (function(e, t) {
                 var n = {
                   generated: {
                     line: e.generatedLine,
-                    column: e.generatedColumn
-                  }
+                    column: e.generatedColumn,
+                  },
                 };
                 if (e.source != null) {
                   n.source = e.source;
@@ -10124,7 +10136,7 @@ module.exports = (function(e, t) {
                   }
                   n.original = {
                     line: e.originalLine,
-                    column: e.originalColumn
+                    column: e.originalColumn,
                   };
                   if (e.name != null) {
                     n.name = e.name;
@@ -10168,7 +10180,7 @@ module.exports = (function(e, t) {
                 originalLine: r != null && r.line,
                 originalColumn: r != null && r.column,
                 source: n,
-                name: o
+                name: o,
               });
             };
             SourceMapGenerator.prototype.setSourceContent = function SourceMapGenerator_setSourceContent(
@@ -10216,7 +10228,7 @@ module.exports = (function(e, t) {
                 if (t.source === n && t.originalLine != null) {
                   var o = e.originalPositionFor({
                     line: t.originalLine,
-                    column: t.originalColumn
+                    column: t.originalColumn,
                   });
                   if (o.source != null) {
                     t.source = o.source;
@@ -10306,7 +10318,7 @@ module.exports = (function(e, t) {
                       generated: e,
                       source: r,
                       original: t,
-                      name: n
+                      name: n,
                     })
                 );
               }
@@ -10386,7 +10398,7 @@ module.exports = (function(e, t) {
                 version: this._version,
                 sources: this._sources.toArray(),
                 names: this._names.toArray(),
-                mappings: this._serializeMappings()
+                mappings: this._serializeMappings(),
               };
               if (this._file != null) {
                 e.file = this._file;
@@ -10527,7 +10539,7 @@ module.exports = (function(e, t) {
                 "overflow-x-scroll": { "overflow-x": "scroll" },
                 "overflow-y-scroll": { "overflow-y": "scroll" },
                 "scrolling-touch": { "-webkit-overflow-scrolling": "touch" },
-                "scrolling-auto": { "-webkit-overflow-scrolling": "auto" }
+                "scrolling-auto": { "-webkit-overflow-scrolling": "auto" },
               });
             };
             var n = r(293);
@@ -10603,7 +10615,7 @@ module.exports = (function(e, t) {
                     this._parseMappings(this._mappings, this.sourceRoot);
                   }
                   return this.__generatedMappings;
-                }
+                },
               }
             );
             SourceMapConsumer.prototype.__originalMappings = null;
@@ -10616,7 +10628,7 @@ module.exports = (function(e, t) {
                     this._parseMappings(this._mappings, this.sourceRoot);
                   }
                   return this.__originalMappings;
-                }
+                },
               }
             );
             SourceMapConsumer.prototype._charIsMappingSeparator = function SourceMapConsumer_charIsMappingSeparator(
@@ -10666,7 +10678,7 @@ module.exports = (function(e, t) {
                   generatedColumn: e.generatedColumn,
                   originalLine: e.originalLine,
                   originalColumn: e.originalColumn,
-                  name: e.name === null ? null : this._names.at(e.name)
+                  name: e.name === null ? null : this._names.at(e.name),
                 };
               }, this).forEach(e, i);
             };
@@ -10677,7 +10689,7 @@ module.exports = (function(e, t) {
               var r = {
                 source: n.getArg(e, "source"),
                 originalLine: t,
-                originalColumn: n.getArg(e, "column", 0)
+                originalColumn: n.getArg(e, "column", 0),
               };
               if (this.sourceRoot != null) {
                 r.source = n.relative(this.sourceRoot, r.source);
@@ -10703,7 +10715,7 @@ module.exports = (function(e, t) {
                     o.push({
                       line: n.getArg(s, "generatedLine", null),
                       column: n.getArg(s, "generatedColumn", null),
-                      lastColumn: n.getArg(s, "lastGeneratedColumn", null)
+                      lastColumn: n.getArg(s, "lastGeneratedColumn", null),
                     });
                     s = this._originalMappings[++a];
                   }
@@ -10713,7 +10725,7 @@ module.exports = (function(e, t) {
                     o.push({
                       line: n.getArg(s, "generatedLine", null),
                       column: n.getArg(s, "generatedColumn", null),
-                      lastColumn: n.getArg(s, "lastGeneratedColumn", null)
+                      lastColumn: n.getArg(s, "lastGeneratedColumn", null),
                     });
                     s = this._originalMappings[++a];
                   }
@@ -10798,7 +10810,7 @@ module.exports = (function(e, t) {
                     ? n.join(this.sourceRoot, e)
                     : e;
                 }, this);
-              }
+              },
             });
             function Mapping() {
               this.generatedLine = 0;
@@ -10924,7 +10936,7 @@ module.exports = (function(e, t) {
             ) {
               var t = {
                 generatedLine: n.getArg(e, "line"),
-                generatedColumn: n.getArg(e, "column")
+                generatedColumn: n.getArg(e, "column"),
               };
               var r = this._findMapping(
                 t,
@@ -10952,7 +10964,7 @@ module.exports = (function(e, t) {
                     source: o,
                     line: n.getArg(i, "originalLine", null),
                     column: n.getArg(i, "originalColumn", null),
-                    name: a
+                    name: a,
                   };
                 }
               }
@@ -11015,7 +11027,7 @@ module.exports = (function(e, t) {
               var r = {
                 source: t,
                 originalLine: n.getArg(e, "line"),
-                originalColumn: n.getArg(e, "column")
+                originalColumn: n.getArg(e, "column"),
               };
               var i = this._findMapping(
                 r,
@@ -11031,7 +11043,7 @@ module.exports = (function(e, t) {
                   return {
                     line: n.getArg(o, "generatedLine", null),
                     column: n.getArg(o, "generatedColumn", null),
-                    lastColumn: n.getArg(o, "lastGeneratedColumn", null)
+                    lastColumn: n.getArg(o, "lastGeneratedColumn", null),
                   };
                 }
               }
@@ -11069,9 +11081,9 @@ module.exports = (function(e, t) {
                 return {
                   generatedOffset: {
                     generatedLine: r + 1,
-                    generatedColumn: i + 1
+                    generatedColumn: i + 1,
                   },
-                  consumer: new SourceMapConsumer(n.getArg(e, "map"))
+                  consumer: new SourceMapConsumer(n.getArg(e, "map")),
                 };
               });
             }
@@ -11096,7 +11108,7 @@ module.exports = (function(e, t) {
                     }
                   }
                   return e;
-                }
+                },
               }
             );
             IndexedSourceMapConsumer.prototype.originalPositionFor = function IndexedSourceMapConsumer_originalPositionFor(
@@ -11104,7 +11116,7 @@ module.exports = (function(e, t) {
             ) {
               var t = {
                 generatedLine: n.getArg(e, "line"),
-                generatedColumn: n.getArg(e, "column")
+                generatedColumn: n.getArg(e, "column"),
               };
               var r = i.search(t, this._sections, function(e, t) {
                 var r = e.generatedLine - t.generatedOffset.generatedLine;
@@ -11124,7 +11136,7 @@ module.exports = (function(e, t) {
                   (o.generatedOffset.generatedLine === t.generatedLine
                     ? o.generatedOffset.generatedColumn - 1
                     : 0),
-                bias: e.bias
+                bias: e.bias,
               });
             };
             IndexedSourceMapConsumer.prototype.hasContentsOfAllSources = function IndexedSourceMapConsumer_hasContentsOfAllSources() {
@@ -11165,7 +11177,7 @@ module.exports = (function(e, t) {
                       i.column +
                       (r.generatedOffset.generatedLine === i.line
                         ? r.generatedOffset.generatedColumn - 1
-                        : 0)
+                        : 0),
                   };
                   return o;
                 }
@@ -11203,7 +11215,7 @@ module.exports = (function(e, t) {
                         : 0),
                     originalLine: u.originalLine,
                     originalColumn: u.originalColumn,
-                    name: c
+                    name: c,
                   };
                   this.__generatedMappings.push(f);
                   if (typeof f.originalLine === "number") {
@@ -11267,7 +11279,7 @@ module.exports = (function(e, t) {
                 "bg-repeat": { "background-repeat": "repeat" },
                 "bg-no-repeat": { "background-repeat": "no-repeat" },
                 "bg-repeat-x": { "background-repeat": "repeat-x" },
-                "bg-repeat-y": { "background-repeat": "repeat-y" }
+                "bg-repeat-y": { "background-repeat": "repeat-y" },
               });
             };
             var n = r(293);
@@ -11417,7 +11429,7 @@ module.exports = (function(e, t) {
                       source: this.source,
                       line: this.line,
                       column: this.column,
-                      name: this.name
+                      name: this.name,
                     });
                   }
                 }
@@ -11501,7 +11513,7 @@ module.exports = (function(e, t) {
                       source: n.source,
                       original: { line: n.line, column: n.column },
                       generated: { line: t.line, column: t.column },
-                      name: n.name
+                      name: n.name,
                     });
                   }
                   o = n.source;
@@ -11511,7 +11523,7 @@ module.exports = (function(e, t) {
                   i = true;
                 } else if (i) {
                   r.addMapping({
-                    generated: { line: t.line, column: t.column }
+                    generated: { line: t.line, column: t.column },
                   });
                   o = null;
                   i = false;
@@ -11528,7 +11540,7 @@ module.exports = (function(e, t) {
                         source: n.source,
                         original: { line: n.line, column: n.column },
                         generated: { line: t.line, column: t.column },
-                        name: n.name
+                        name: n.name,
                       });
                     }
                   } else {
@@ -11565,14 +11577,14 @@ module.exports = (function(e, t) {
                     e({
                       container: n,
                       separator: (0, u.default)(r.options.separator),
-                      modifySelectors: e => {
-                        n.walkRules(t => {
-                          t.selectors = t.selectors.map(t =>
+                      modifySelectors: (e) => {
+                        n.walkRules((t) => {
+                          t.selectors = t.selectors.map((t) =>
                             e({ className: t.slice(1), selector: t })
                           );
                         });
                         return n;
-                      }
+                      },
                     }),
                     n
                   ).nodes
@@ -11598,7 +11610,7 @@ module.exports = (function(e, t) {
                 e = [e];
               }
               return (0, i.default)(e)
-                .map(e => {
+                .map((e) => {
                   if (i.default.has(e, "raw")) {
                     return e.raw;
                   }
@@ -11620,8 +11632,8 @@ module.exports = (function(e, t) {
             "use strict";
             Object.defineProperty(t, "__esModule", { value: true });
             t.default = function(e, t) {
-              e.walkRules(e => {
-                e.selectors = e.selectors.map(e => (0, i.default)(t, e));
+              e.walkRules((e) => {
+                e.selectors = e.selectors.map((e) => (0, i.default)(t, e));
               });
               return e;
             };
@@ -11771,8 +11783,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -11849,7 +11861,7 @@ module.exports = (function(e, t) {
               comma: function comma(e) {
                 var comma = ",";
                 return r.split(e, [comma], true);
-              }
+              },
             };
             t.default = r;
             e.exports = t["default"];
@@ -12765,7 +12777,7 @@ module.exports = (function(e, t) {
                 e[t] = {
                   get: function() {
                     return build.call(this, this._styles.concat(t));
-                  }
+                  },
                 };
               });
               return e;
@@ -12811,7 +12823,7 @@ module.exports = (function(e, t) {
                 e[t] = {
                   get: function() {
                     return build.call(this, [t]);
-                  }
+                  },
                 };
               });
               return e;
@@ -12858,8 +12870,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -13024,7 +13036,7 @@ module.exports = (function(e, t) {
                         F,
                         W - G,
                         F,
-                        O - G
+                        O - G,
                       ]);
                       W = O;
                     } else {
@@ -13230,8 +13242,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -13406,7 +13418,7 @@ module.exports = (function(e, t) {
               white: [255, 255, 255],
               whitesmoke: [245, 245, 245],
               yellow: [255, 255, 0],
-              yellowgreen: [154, 205, 50]
+              yellowgreen: [154, 205, 50],
             };
           },
           function(e, t, r) {
@@ -13475,8 +13487,8 @@ module.exports = (function(e, t) {
                   key: "content",
                   get: function get() {
                     return this.css;
-                  }
-                }
+                  },
+                },
               ]);
               return Result;
             })();
@@ -13512,7 +13524,7 @@ module.exports = (function(e, t) {
               "[": i.default.yellow,
               "]": i.default.yellow,
               ":": i.default.yellow,
-              ";": i.default.yellow
+              ";": i.default.yellow,
             };
             function getTokenType(e, t) {
               var r = e[0],
@@ -13585,7 +13597,7 @@ module.exports = (function(e, t) {
                 level: e,
                 hasBasic: true,
                 has256: e >= 2,
-                has16m: e >= 3
+                has16m: e >= 3,
               };
             }
             function supportsColor(e) {
@@ -13616,7 +13628,7 @@ module.exports = (function(e, t) {
               if ("CI" in o) {
                 if (
                   ["TRAVIS", "CIRCLECI", "APPVEYOR", "GITLAB_CI"].some(
-                    e => e in o
+                    (e) => e in o
                   ) ||
                   o.CI_NAME === "codeship"
                 ) {
@@ -13668,7 +13680,7 @@ module.exports = (function(e, t) {
             e.exports = {
               supportsColor: getSupportLevel,
               stdout: getSupportLevel(process.stdout),
-              stderr: getSupportLevel(process.stderr)
+              stderr: getSupportLevel(process.stderr),
             };
           },
           ,
@@ -13702,7 +13714,7 @@ module.exports = (function(e, t) {
                   underline: [4, 24],
                   inverse: [7, 27],
                   hidden: [8, 28],
-                  strikethrough: [9, 29]
+                  strikethrough: [9, 29],
                 },
                 color: {
                   black: [30, 39],
@@ -13720,7 +13732,7 @@ module.exports = (function(e, t) {
                   blueBright: [94, 39],
                   magentaBright: [95, 39],
                   cyanBright: [96, 39],
-                  whiteBright: [97, 39]
+                  whiteBright: [97, 39],
                 },
                 bgColor: {
                   bgBlack: [40, 49],
@@ -13738,8 +13750,8 @@ module.exports = (function(e, t) {
                   bgBlueBright: [104, 49],
                   bgMagentaBright: [105, 49],
                   bgCyanBright: [106, 49],
-                  bgWhiteBright: [107, 49]
-                }
+                  bgWhiteBright: [107, 49],
+                },
               };
               t.color.grey = t.color.gray;
               for (const r of Object.keys(t)) {
@@ -13753,7 +13765,7 @@ module.exports = (function(e, t) {
                 Object.defineProperty(t, r, { value: n, enumerable: false });
                 Object.defineProperty(t, "codes", {
                   value: e,
-                  enumerable: false
+                  enumerable: false,
                 });
               }
               const r = (e, t, r) => [e, t, r];
@@ -13787,7 +13799,7 @@ module.exports = (function(e, t) {
             }
             Object.defineProperty(e, "exports", {
               enumerable: true,
-              get: assembleStyles
+              get: assembleStyles,
             });
           },
           function(e, t, r) {
@@ -13898,7 +13910,7 @@ module.exports = (function(e, t) {
                     sourceIndex: _ - x.length,
                     value: v,
                     before: x,
-                    after: ""
+                    after: "",
                   });
                   x = "";
                   _ += 1;
@@ -13913,7 +13925,7 @@ module.exports = (function(e, t) {
                     type: "function",
                     sourceIndex: _ - R.length,
                     value: R,
-                    before: f.slice(_ + 1, p)
+                    before: f.slice(_ + 1, p),
                   };
                   _ = p;
                   if (R === "url" && b !== n && b !== i) {
@@ -13943,8 +13955,8 @@ module.exports = (function(e, t) {
                         {
                           type: "word",
                           sourceIndex: _,
-                          value: f.slice(_, y + 1)
-                        }
+                          value: f.slice(_, y + 1),
+                        },
                       ];
                     } else {
                       v.nodes = [];
@@ -13954,7 +13966,7 @@ module.exports = (function(e, t) {
                       v.nodes.push({
                         type: "space",
                         sourceIndex: y + 1,
-                        value: f.slice(y + 1, p)
+                        value: f.slice(y + 1, p),
                       });
                     } else {
                       v.after = f.slice(y + 1, p);
@@ -14038,8 +14050,8 @@ module.exports = (function(e, t) {
                 functions: {
                   config: (t, r) => {
                     return i.default.get(e, i.default.trim(t, `'"`), r);
-                  }
-                }
+                  },
+                },
               });
             };
             var n = r(562);
@@ -14100,7 +14112,7 @@ module.exports = (function(e, t) {
               comma: function comma(e) {
                 var comma = ",";
                 return r.split(e, [comma], true);
-              }
+              },
             };
             t.default = r;
             e.exports = t["default"];
@@ -14184,7 +14196,7 @@ module.exports = (function(e, t) {
                 "bg-right": { "background-position": "right" },
                 "bg-right-bottom": { "background-position": "right bottom" },
                 "bg-right-top": { "background-position": "right top" },
-                "bg-top": { "background-position": "top" }
+                "bg-top": { "background-position": "top" },
               });
             };
             var n = r(293);
@@ -14200,7 +14212,7 @@ module.exports = (function(e, t) {
             "use strict";
             Object.defineProperty(t, "__esModule", { value: true });
             t.default = function(e, t, r = {}) {
-              e.forEach(e => {
+              e.forEach((e) => {
                 if (!i.default.has(t, e.name)) {
                   throw new Error(
                     `Module \`${e.name}\` is missing from moduleOptions.`
@@ -14209,9 +14221,9 @@ module.exports = (function(e, t) {
               });
               return a.default.root({
                 nodes: (0, i.default)(e)
-                  .reject(e => t[e.name] === false)
-                  .flatMap(e => (0, u.default)(e.generator(r), t[e.name]))
-                  .value()
+                  .reject((e) => t[e.name] === false)
+                  .flatMap((e) => (0, u.default)(e.generator(r), t[e.name]))
+                  .value(),
               });
             };
             var n = r(562);
@@ -14246,7 +14258,7 @@ module.exports = (function(e, t) {
                   underline: [4, 24],
                   inverse: [7, 27],
                   hidden: [8, 28],
-                  strikethrough: [9, 29]
+                  strikethrough: [9, 29],
                 },
                 colors: {
                   black: [30, 39],
@@ -14257,7 +14269,7 @@ module.exports = (function(e, t) {
                   magenta: [35, 39],
                   cyan: [36, 39],
                   white: [37, 39],
-                  gray: [90, 39]
+                  gray: [90, 39],
                 },
                 bgColors: {
                   bgBlack: [40, 49],
@@ -14267,8 +14279,8 @@ module.exports = (function(e, t) {
                   bgBlue: [44, 49],
                   bgMagenta: [45, 49],
                   bgCyan: [46, 49],
-                  bgWhite: [47, 49]
-                }
+                  bgWhite: [47, 49],
+                },
               };
               e.colors.grey = e.colors.gray;
               Object.keys(e).forEach(function(t) {
@@ -14277,7 +14289,7 @@ module.exports = (function(e, t) {
                   var n = r[t];
                   e[t] = r[t] = {
                     open: "[" + n[0] + "m",
-                    close: "[" + n[1] + "m"
+                    close: "[" + n[1] + "m",
                   };
                 });
                 Object.defineProperty(e, t, { value: r, enumerable: false });
@@ -14286,7 +14298,7 @@ module.exports = (function(e, t) {
             }
             Object.defineProperty(e, "exports", {
               enumerable: true,
-              get: assembleStyles
+              get: assembleStyles,
             });
           },
           ,
@@ -14322,13 +14334,13 @@ module.exports = (function(e, t) {
                 value: function() {
                   return once(this);
                 },
-                configurable: true
+                configurable: true,
               });
               Object.defineProperty(Function.prototype, "onceStrict", {
                 value: function() {
                   return onceStrict(this);
                 },
-                configurable: true
+                configurable: true,
               });
             });
             function once(e) {
@@ -14372,7 +14384,7 @@ module.exports = (function(e, t) {
               after: "\n",
               emptyBody: "",
               commentLeft: " ",
-              commentRight: " "
+              commentRight: " ",
             };
             function capitalize(e) {
               return e[0].toUpperCase() + e.slice(1);
@@ -14704,8 +14716,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -14731,8 +14743,8 @@ module.exports = (function(e, t) {
                     var t = this.selector ? this.selector.match(/,\s*/) : null;
                     var r = t ? t[0] : "," + this.raw("between", "beforeOpen");
                     this.selector = e.join(r);
-                  }
-                }
+                  },
+                },
               ]);
               return Rule;
             })(o.default);
@@ -15019,44 +15031,44 @@ module.exports = (function(e, t) {
                   key: "processor",
                   get: function get() {
                     return this.result.processor;
-                  }
+                  },
                 },
                 {
                   key: "opts",
                   get: function get() {
                     return this.result.opts;
-                  }
+                  },
                 },
                 {
                   key: "css",
                   get: function get() {
                     return this.stringify().css;
-                  }
+                  },
                 },
                 {
                   key: "content",
                   get: function get() {
                     return this.stringify().content;
-                  }
+                  },
                 },
                 {
                   key: "map",
                   get: function get() {
                     return this.stringify().map;
-                  }
+                  },
                 },
                 {
                   key: "root",
                   get: function get() {
                     return this.sync().root;
-                  }
+                  },
                 },
                 {
                   key: "messages",
                   get: function get() {
                     return this.sync().messages;
-                  }
-                }
+                  },
+                },
               ]);
               return LazyResult;
             })();
@@ -15078,7 +15090,7 @@ module.exports = (function(e, t) {
               },
               unprefixed: function unprefixed(e) {
                 return e.replace(/^-\w+-/, "");
-              }
+              },
             };
             t.default = r;
             e.exports = t["default"];
@@ -15264,8 +15276,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -15291,7 +15303,7 @@ module.exports = (function(e, t) {
                     var t = this.selector ? this.selector.match(/,\s*/) : null;
                     var r = t ? t[0] : "," + this.raw("between", "beforeOpen");
                     this.selector = e.join(r);
-                  }
+                  },
                 },
                 {
                   key: "_selector",
@@ -15306,8 +15318,8 @@ module.exports = (function(e, t) {
                       "Rule#_selector is deprecated. Use Rule#raws.selector"
                     );
                     this.raws.selector = e;
-                  }
-                }
+                  },
+                },
               ]);
               return Rule;
             })(o.default);
@@ -15361,7 +15373,7 @@ module.exports = (function(e, t) {
                 get: function get() {
                   if (!n) n = r();
                   return n;
-                }
+                },
               });
               r.process = function(e, t) {
                 return postcss([r(t)]).process(e, t);
@@ -15399,7 +15411,7 @@ module.exports = (function(e, t) {
               return e && e.__esModule ? e : { default: e };
             }
             function extractMinWidths(e) {
-              return i.default.flatMap(e, e => {
+              return i.default.flatMap(e, (e) => {
                 if (i.default.isString(e)) {
                   e = { min: e };
                 }
@@ -15407,12 +15419,12 @@ module.exports = (function(e, t) {
                   e = [e];
                 }
                 return (0, i.default)(e)
-                  .filter(e => {
+                  .filter((e) => {
                     return (
                       i.default.has(e, "min") || i.default.has(e, "min-width")
                     );
                   })
-                  .map(e => {
+                  .map((e) => {
                     return i.default.get(e, "min-width", e.min);
                   })
                   .value();
@@ -15422,11 +15434,11 @@ module.exports = (function(e, t) {
               return function({ addComponents: t, config: r }) {
                 const n = i.default.get(e, "screens", r("screens"));
                 const o = extractMinWidths(n);
-                const a = i.default.map(o, e => {
+                const a = i.default.map(o, (e) => {
                   return {
                     [`@media (min-width: ${e})`]: {
-                      ".container": { "max-width": e }
-                    }
+                      ".container": { "max-width": e },
+                    },
                   };
                 });
                 t([
@@ -15439,9 +15451,9 @@ module.exports = (function(e, t) {
                       i.default.has(e, "padding")
                         ? { paddingRight: e.padding, paddingLeft: e.padding }
                         : {}
-                    )
+                    ),
                   },
-                  ...a
+                  ...a,
                 ]);
               };
             };
@@ -15457,22 +15469,22 @@ module.exports = (function(e, t) {
                 const n = e.options.separator;
                 const o = [];
                 let s = [];
-                t.walkAtRules("responsive", e => {
+                t.walkAtRules("responsive", (e) => {
                   const t = e.nodes;
                   o.push(...(0, u.default)(t));
                   e.before(t);
                   e.remove();
                 });
-                i.default.keys(r).forEach(e => {
+                i.default.keys(r).forEach((e) => {
                   const t = a.default.atRule({
                     name: "media",
-                    params: (0, c.default)(r[e])
+                    params: (0, c.default)(r[e]),
                   });
                   t.append(
-                    o.map(t => {
+                    o.map((t) => {
                       const r = t.clone();
-                      r.selectors = i.default.map(t.selectors, r =>
-                        (0, p.default)(r, e, n, e => {
+                      r.selectors = i.default.map(t.selectors, (r) =>
+                        (0, p.default)(r, e, n, (e) => {
                           throw t.error(e);
                         })
                       );
@@ -15481,12 +15493,12 @@ module.exports = (function(e, t) {
                   );
                   s.push(t);
                 });
-                const l = s.some(e => e.nodes.length !== 0);
+                const l = s.some((e) => e.nodes.length !== 0);
                 if (!l) {
                   return;
                 }
                 let f = false;
-                t.walkAtRules("tailwind", e => {
+                t.walkAtRules("tailwind", (e) => {
                   if (e.params === "screens") {
                     e.replaceWith(s);
                     f = true;
@@ -15548,8 +15560,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -15569,7 +15581,7 @@ module.exports = (function(e, t) {
                   this.spaces.before,
                   this.ns,
                   String("#" + this.value),
-                  this.spaces.after
+                  this.spaces.after,
                 ].join("");
               };
               return ID;
@@ -15593,7 +15605,7 @@ module.exports = (function(e, t) {
               return e && e.__esModule ? e : { default: e };
             }
             function cloneNodes(e) {
-              return i.default.map(e, e => e.clone());
+              return i.default.map(e, (e) => e.clone());
             }
           },
           ,
@@ -15624,8 +15636,8 @@ module.exports = (function(e, t) {
                 var n = {
                   generated: {
                     line: e.generatedLine,
-                    column: e.generatedColumn
-                  }
+                    column: e.generatedColumn,
+                  },
                 };
                 if (e.source != null) {
                   n.source = e.source;
@@ -15634,7 +15646,7 @@ module.exports = (function(e, t) {
                   }
                   n.original = {
                     line: e.originalLine,
-                    column: e.originalColumn
+                    column: e.originalColumn,
                   };
                   if (e.name != null) {
                     n.name = e.name;
@@ -15678,7 +15690,7 @@ module.exports = (function(e, t) {
                 originalLine: r != null && r.line,
                 originalColumn: r != null && r.column,
                 source: n,
-                name: o
+                name: o,
               });
             };
             SourceMapGenerator.prototype.setSourceContent = function SourceMapGenerator_setSourceContent(
@@ -15726,7 +15738,7 @@ module.exports = (function(e, t) {
                 if (t.source === n && t.originalLine != null) {
                   var o = e.originalPositionFor({
                     line: t.originalLine,
-                    column: t.originalColumn
+                    column: t.originalColumn,
                   });
                   if (o.source != null) {
                     t.source = o.source;
@@ -15816,7 +15828,7 @@ module.exports = (function(e, t) {
                       generated: e,
                       source: r,
                       original: t,
-                      name: n
+                      name: n,
                     })
                 );
               }
@@ -15896,7 +15908,7 @@ module.exports = (function(e, t) {
                 version: this._version,
                 sources: this._sources.toArray(),
                 names: this._names.toArray(),
-                mappings: this._serializeMappings()
+                mappings: this._serializeMappings(),
               };
               if (this._file != null) {
                 e.file = this._file;
@@ -16025,7 +16037,7 @@ module.exports = (function(e, t) {
                 var i = {
                   file: this.mapResolve(n.source),
                   line: n.line,
-                  column: n.column
+                  column: n.column,
                 };
                 var o = r.sourceContentFor(n.source);
                 if (o) i.source = o;
@@ -16046,8 +16058,8 @@ module.exports = (function(e, t) {
                   key: "from",
                   get: function get() {
                     return this.file || this.id;
-                  }
-                }
+                  },
+                },
               ]);
               return Input;
             })();
@@ -16096,8 +16108,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -16283,8 +16295,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -16340,7 +16352,7 @@ module.exports = (function(e, t) {
                       "AtRule#afterName was deprecated. Use AtRule#raws.afterName"
                     );
                     this.raws.afterName = e;
-                  }
+                  },
                 },
                 {
                   key: "_params",
@@ -16355,8 +16367,8 @@ module.exports = (function(e, t) {
                       "AtRule#_params was deprecated. Use AtRule#raws.params"
                     );
                     this.raws.params = e;
-                  }
-                }
+                  },
+                },
               ]);
               return AtRule;
             })(o.default);
@@ -16440,8 +16452,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -16699,20 +16711,20 @@ module.exports = (function(e, t) {
                   key: "first",
                   get: function get() {
                     return this.at(0);
-                  }
+                  },
                 },
                 {
                   key: "last",
                   get: function get() {
                     return this.at(this.length - 1);
-                  }
+                  },
                 },
                 {
                   key: "length",
                   get: function get() {
                     return this.nodes.length;
-                  }
-                }
+                  },
+                },
               ]);
               return Container;
             })(o.default);
@@ -16735,12 +16747,12 @@ module.exports = (function(e, t) {
                 "no-underline": { "text-decoration": "none" },
                 antialiased: {
                   "-webkit-font-smoothing": "antialiased",
-                  "-moz-osx-font-smoothing": "grayscale"
+                  "-moz-osx-font-smoothing": "grayscale",
                 },
                 "subpixel-antialiased": {
                   "-webkit-font-smoothing": "auto",
-                  "-moz-osx-font-smoothing": "auto"
-                }
+                  "-moz-osx-font-smoothing": "auto",
+                },
               });
             };
             var n = r(293);
@@ -17008,44 +17020,44 @@ module.exports = (function(e, t) {
                   key: "processor",
                   get: function get() {
                     return this.result.processor;
-                  }
+                  },
                 },
                 {
                   key: "opts",
                   get: function get() {
                     return this.result.opts;
-                  }
+                  },
                 },
                 {
                   key: "css",
                   get: function get() {
                     return this.stringify().css;
-                  }
+                  },
                 },
                 {
                   key: "content",
                   get: function get() {
                     return this.stringify().content;
-                  }
+                  },
                 },
                 {
                   key: "map",
                   get: function get() {
                     return this.stringify().map;
-                  }
+                  },
                 },
                 {
                   key: "root",
                   get: function get() {
                     return this.sync().root;
-                  }
+                  },
                 },
                 {
                   key: "messages",
                   get: function get() {
                     return this.sync().messages;
-                  }
-                }
+                  },
+                },
               ]);
               return LazyResult;
             })();
@@ -17649,7 +17661,7 @@ module.exports = (function(e, t) {
                   e(String.prototype, "repeat", {
                     value: t,
                     configurable: true,
-                    writable: true
+                    writable: true,
                   });
                 } else {
                   String.prototype.repeat = t;
@@ -17665,7 +17677,7 @@ module.exports = (function(e, t) {
                 "text-left": { "text-align": "left" },
                 "text-center": { "text-align": "center" },
                 "text-right": { "text-align": "right" },
-                "text-justify": { "text-align": "justify" }
+                "text-justify": { "text-align": "justify" },
               });
             };
             var n = r(293);
@@ -17711,8 +17723,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -17799,7 +17811,7 @@ module.exports = (function(e, t) {
               "pt",
               "pc",
               "vmin",
-              "vmax"
+              "vmax",
             ];
             function applyTransformFeatures(e, t) {
               if (isHex(e)) {
@@ -18142,8 +18154,8 @@ module.exports = (function(e, t) {
                       "CssSyntaxError#generated is deprecated. Use input instead."
                     );
                     return this.input;
-                  }
-                }
+                  },
+                },
               ]);
               return CssSyntaxError;
             })();
@@ -18392,7 +18404,7 @@ module.exports = (function(e, t) {
                 "border-solid": { "border-style": "solid" },
                 "border-dashed": { "border-style": "dashed" },
                 "border-dotted": { "border-style": "dotted" },
-                "border-none": { "border-style": "none" }
+                "border-none": { "border-style": "none" },
               });
             };
             var n = r(293);
@@ -18617,7 +18629,7 @@ module.exports = (function(e, t) {
                   }
                 }
                 return true;
-              }
+              },
             };
           },
           ,
@@ -18643,7 +18655,7 @@ module.exports = (function(e, t) {
                 level: e,
                 hasBasic: true,
                 has256: e >= 2,
-                has16m: e >= 3
+                has16m: e >= 3,
               };
             };
             var o = (function() {
@@ -18851,7 +18863,7 @@ module.exports = (function(e, t) {
                       source: this.source,
                       line: this.line,
                       column: this.column,
-                      name: this.name
+                      name: this.name,
                     });
                   }
                 }
@@ -18935,7 +18947,7 @@ module.exports = (function(e, t) {
                       source: n.source,
                       original: { line: n.line, column: n.column },
                       generated: { line: t.line, column: t.column },
-                      name: n.name
+                      name: n.name,
                     });
                   }
                   o = n.source;
@@ -18945,7 +18957,7 @@ module.exports = (function(e, t) {
                   i = true;
                 } else if (i) {
                   r.addMapping({
-                    generated: { line: t.line, column: t.column }
+                    generated: { line: t.line, column: t.column },
                   });
                   o = null;
                   i = false;
@@ -18962,7 +18974,7 @@ module.exports = (function(e, t) {
                         source: n.source,
                         original: { line: n.line, column: n.column },
                         generated: { line: t.line, column: t.column },
-                        name: n.name
+                        name: n.name,
                       });
                     }
                   } else {
@@ -19544,8 +19556,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -19574,7 +19586,7 @@ module.exports = (function(e, t) {
                       "Node#_value was deprecated. Use Node#raws.value"
                     );
                     this.raws.value = e;
-                  }
+                  },
                 },
                 {
                   key: "_important",
@@ -19589,8 +19601,8 @@ module.exports = (function(e, t) {
                       "Node#_important was deprecated. Use Node#raws.important"
                     );
                     this.raws.important = e;
-                  }
-                }
+                  },
+                },
               ]);
               return Declaration;
             })(s.default);
@@ -19959,7 +19971,7 @@ module.exports = (function(e, t) {
               }
               return i.default.flatMap(
                 e,
-                e =>
+                (e) =>
                   (0, a.default)([u.default]).process(e, { parser: c.default })
                     .root.nodes
               );
@@ -20087,7 +20099,7 @@ module.exports = (function(e, t) {
               "tc",
               "wap",
               "webkit",
-              "xv"
+              "xv",
             ];
           },
           ,
@@ -20122,7 +20134,7 @@ module.exports = (function(e, t) {
                   return this.node.error(this.text, {
                     plugin: this.plugin,
                     index: this.index,
-                    word: this.word
+                    word: this.word,
                   }).message;
                 } else if (this.plugin) {
                   return this.plugin + ": " + this.text;
@@ -20307,8 +20319,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -20342,8 +20354,8 @@ module.exports = (function(e, t) {
                   key: "errorGenerator",
                   set: function set(e) {
                     this._error = e;
-                  }
-                }
+                  },
+                },
               ]);
               return Root;
             })(o.default);
@@ -20429,7 +20441,7 @@ module.exports = (function(e, t) {
               after: "\n",
               emptyBody: "",
               commentLeft: " ",
-              commentRight: " "
+              commentRight: " ",
             };
             function capitalize(e) {
               return e[0].toUpperCase() + e.slice(1);
@@ -20809,8 +20821,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -20837,7 +20849,7 @@ module.exports = (function(e, t) {
                 return [
                   this.spaces.before,
                   this.qualifiedName(this.value),
-                  this.spaces.after
+                  this.spaces.after,
                 ].join("");
               };
               n(Namespace, [
@@ -20851,7 +20863,7 @@ module.exports = (function(e, t) {
                     if (this.raws) {
                       delete this.raws.namespace;
                     }
-                  }
+                  },
                 },
                 {
                   key: "ns",
@@ -20863,7 +20875,7 @@ module.exports = (function(e, t) {
                     if (this.raws) {
                       delete this.raws.namespace;
                     }
-                  }
+                  },
                 },
                 {
                   key: "namespaceString",
@@ -20879,8 +20891,8 @@ module.exports = (function(e, t) {
                     } else {
                       return "";
                     }
-                  }
-                }
+                  },
+                },
               ]);
               return Namespace;
             })(o.default);
@@ -21048,8 +21060,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -21078,7 +21090,7 @@ module.exports = (function(e, t) {
                       "Comment#left was deprecated. Use Comment#raws.left"
                     );
                     this.raws.left = e;
-                  }
+                  },
                 },
                 {
                   key: "right",
@@ -21093,8 +21105,8 @@ module.exports = (function(e, t) {
                       "Comment#right was deprecated. Use Comment#raws.right"
                     );
                     this.raws.right = e;
-                  }
-                }
+                  },
+                },
               ]);
               return Comment;
             })(s.default);
@@ -21123,7 +21135,7 @@ module.exports = (function(e, t) {
               after: "\n",
               emptyBody: "",
               commentLeft: " ",
-              commentRight: " "
+              commentRight: " ",
             };
             function capitalize(e) {
               return e[0].toUpperCase() + e.slice(1);
@@ -21432,7 +21444,7 @@ module.exports = (function(e, t) {
                   (0, p.default)(r, n),
                   (0, d.default)(r),
                   (0, g.default)(r),
-                  (0, y.default)(r, o)
+                  (0, y.default)(r, o),
                 ]).process(t, { from: i.default.get(t, "source.input.file") });
               };
             };
@@ -21506,7 +21518,7 @@ module.exports = (function(e, t) {
                     this._parseMappings(this._mappings, this.sourceRoot);
                   }
                   return this.__generatedMappings;
-                }
+                },
               }
             );
             SourceMapConsumer.prototype.__originalMappings = null;
@@ -21521,7 +21533,7 @@ module.exports = (function(e, t) {
                     this._parseMappings(this._mappings, this.sourceRoot);
                   }
                   return this.__originalMappings;
-                }
+                },
               }
             );
             SourceMapConsumer.prototype._charIsMappingSeparator = function SourceMapConsumer_charIsMappingSeparator(
@@ -21569,7 +21581,7 @@ module.exports = (function(e, t) {
                   generatedColumn: e.generatedColumn,
                   originalLine: e.originalLine,
                   originalColumn: e.originalColumn,
-                  name: e.name === null ? null : this._names.at(e.name)
+                  name: e.name === null ? null : this._names.at(e.name),
                 };
               }, this).forEach(e, i);
             };
@@ -21580,7 +21592,7 @@ module.exports = (function(e, t) {
               var r = {
                 source: n.getArg(e, "source"),
                 originalLine: t,
-                originalColumn: n.getArg(e, "column", 0)
+                originalColumn: n.getArg(e, "column", 0),
               };
               r.source = this._findSourceIndex(r.source);
               if (r.source < 0) {
@@ -21603,7 +21615,7 @@ module.exports = (function(e, t) {
                     o.push({
                       line: n.getArg(s, "generatedLine", null),
                       column: n.getArg(s, "generatedColumn", null),
-                      lastColumn: n.getArg(s, "lastGeneratedColumn", null)
+                      lastColumn: n.getArg(s, "lastGeneratedColumn", null),
                     });
                     s = this._originalMappings[++a];
                   }
@@ -21613,7 +21625,7 @@ module.exports = (function(e, t) {
                     o.push({
                       line: n.getArg(s, "generatedLine", null),
                       column: n.getArg(s, "generatedColumn", null),
-                      lastColumn: n.getArg(s, "lastGeneratedColumn", null)
+                      lastColumn: n.getArg(s, "lastGeneratedColumn", null),
                     });
                     s = this._originalMappings[++a];
                   }
@@ -21722,7 +21734,7 @@ module.exports = (function(e, t) {
             Object.defineProperty(BasicSourceMapConsumer.prototype, "sources", {
               get: function() {
                 return this._absoluteSources.slice();
-              }
+              },
             });
             function Mapping() {
               this.generatedLine = 0;
@@ -21848,7 +21860,7 @@ module.exports = (function(e, t) {
             ) {
               var t = {
                 generatedLine: n.getArg(e, "line"),
-                generatedColumn: n.getArg(e, "column")
+                generatedColumn: n.getArg(e, "column"),
               };
               var r = this._findMapping(
                 t,
@@ -21878,7 +21890,7 @@ module.exports = (function(e, t) {
                     source: o,
                     line: n.getArg(i, "originalLine", null),
                     column: n.getArg(i, "originalColumn", null),
-                    name: a
+                    name: a,
                   };
                 }
               }
@@ -21940,7 +21952,7 @@ module.exports = (function(e, t) {
               var r = {
                 source: t,
                 originalLine: n.getArg(e, "line"),
-                originalColumn: n.getArg(e, "column")
+                originalColumn: n.getArg(e, "column"),
               };
               var i = this._findMapping(
                 r,
@@ -21956,7 +21968,7 @@ module.exports = (function(e, t) {
                   return {
                     line: n.getArg(o, "generatedLine", null),
                     column: n.getArg(o, "generatedColumn", null),
-                    lastColumn: n.getArg(o, "lastGeneratedColumn", null)
+                    lastColumn: n.getArg(o, "lastGeneratedColumn", null),
                   };
                 }
               }
@@ -21994,9 +22006,9 @@ module.exports = (function(e, t) {
                 return {
                   generatedOffset: {
                     generatedLine: i + 1,
-                    generatedColumn: o + 1
+                    generatedColumn: o + 1,
                   },
-                  consumer: new SourceMapConsumer(n.getArg(e, "map"), t)
+                  consumer: new SourceMapConsumer(n.getArg(e, "map"), t),
                 };
               });
             }
@@ -22021,7 +22033,7 @@ module.exports = (function(e, t) {
                     }
                   }
                   return e;
-                }
+                },
               }
             );
             IndexedSourceMapConsumer.prototype.originalPositionFor = function IndexedSourceMapConsumer_originalPositionFor(
@@ -22029,7 +22041,7 @@ module.exports = (function(e, t) {
             ) {
               var t = {
                 generatedLine: n.getArg(e, "line"),
-                generatedColumn: n.getArg(e, "column")
+                generatedColumn: n.getArg(e, "column"),
               };
               var r = i.search(t, this._sections, function(e, t) {
                 var r = e.generatedLine - t.generatedOffset.generatedLine;
@@ -22049,7 +22061,7 @@ module.exports = (function(e, t) {
                   (o.generatedOffset.generatedLine === t.generatedLine
                     ? o.generatedOffset.generatedColumn - 1
                     : 0),
-                bias: e.bias
+                bias: e.bias,
               });
             };
             IndexedSourceMapConsumer.prototype.hasContentsOfAllSources = function IndexedSourceMapConsumer_hasContentsOfAllSources() {
@@ -22090,7 +22102,7 @@ module.exports = (function(e, t) {
                       i.column +
                       (r.generatedOffset.generatedLine === i.line
                         ? r.generatedOffset.generatedColumn - 1
-                        : 0)
+                        : 0),
                   };
                   return o;
                 }
@@ -22133,7 +22145,7 @@ module.exports = (function(e, t) {
                         : 0),
                     originalLine: u.originalLine,
                     originalColumn: u.originalColumn,
-                    name: c
+                    name: c,
                   };
                   this.__generatedMappings.push(f);
                   if (typeof f.originalLine === "number") {
@@ -22161,7 +22173,7 @@ module.exports = (function(e, t) {
                 "align-middle": { "vertical-align": "middle" },
                 "align-bottom": { "vertical-align": "bottom" },
                 "align-text-top": { "vertical-align": "text-top" },
-                "align-text-bottom": { "vertical-align": "text-bottom" }
+                "align-text-bottom": { "vertical-align": "text-bottom" },
               });
             };
             var n = r(293);
@@ -22235,7 +22247,7 @@ module.exports = (function(e, t) {
               plugin: plugin,
               pluginPath: pluginPath,
               tree: tree = false,
-              strings: strings = false
+              strings: strings = false,
             } = {}) {
               let version = "0.7.3";
               if (pluginPath) {
@@ -22266,7 +22278,7 @@ module.exports = (function(e, t) {
               if (tree) {
                 hooked = Object(_hook_js__WEBPACK_IMPORTED_MODULE_4__["a"])(
                   configPath,
-                  e => {
+                  (e) => {
                     sep = dlv__WEBPACK_IMPORTED_MODULE_3___default()(
                       e,
                       sepLocation,
@@ -22328,11 +22340,11 @@ module.exports = (function(e, t) {
               }
               return postcss([plugin(configPath)])
                 .process("@tailwind utilities;")
-                .then(e => {
+                .then((e) => {
                   hooked.unhook();
                   const t = [];
                   const r = {};
-                  e.root.walkRules(e => {
+                  e.root.walkRules((e) => {
                     let n = parseSelector(extractClassName).transformSync(
                       e.selector
                     );
@@ -22342,7 +22354,7 @@ module.exports = (function(e, t) {
                     if (t.includes(i)) return;
                     t.push(i);
                     const a = {};
-                    e.walkDecls(e => {
+                    e.walkDecls((e) => {
                       a[e.prop] = e.value;
                     });
                     let s = e;
@@ -22370,7 +22382,7 @@ module.exports = (function(e, t) {
                     );
                   });
                   if (strings) {
-                    Object.keys(r).forEach(e => {
+                    Object.keys(r).forEach((e) => {
                       r[e] = stringify(r[e]);
                     });
                   }
@@ -22381,7 +22393,7 @@ module.exports = (function(e, t) {
                   );
                   if (tree) {
                     const n = {};
-                    t.forEach(e => {
+                    t.forEach((e) => {
                       dset__WEBPACK_IMPORTED_MODULE_2___default()(
                         n,
                         e.split("__TAILWIND_SEPARATOR__"),
@@ -22406,7 +22418,7 @@ module.exports = (function(e, t) {
                         config,
                         "plugins",
                         []
-                      ).forEach(e => {
+                      ).forEach((e) => {
                         e({
                           postcss: postcss,
                           config: (e, t) =>
@@ -22431,14 +22443,14 @@ module.exports = (function(e, t) {
                               t
                             );
                           },
-                          e: e => e,
-                          prefix: e => e,
+                          e: (e) => e,
+                          prefix: (e) => e,
                           addBase: () => {},
                           addUtilities: () => {},
                           addComponents: () => {},
-                          addVariant: e => {
+                          addVariant: (e) => {
                             i.push(e);
-                          }
+                          },
                         });
                       });
                     } catch (e) {}
@@ -22457,7 +22469,7 @@ module.exports = (function(e, t) {
                       screens: o,
                       classNames: n,
                       config: config,
-                      configDependencies: hooked.deps
+                      configDependencies: hooked.deps,
                     };
                   }
                   return { classNames: r, config: config };
@@ -22473,7 +22485,7 @@ module.exports = (function(e, t) {
                     t +
                     " " +
                     r
-                      .replace(/([A-Z])/g, e => `-${e[0].toLowerCase()}`)
+                      .replace(/([A-Z])/g, (e) => `-${e[0].toLowerCase()}`)
                       .replace(/^(moz|webkit|ms|o)-/g, "-$1-") +
                     ": " +
                     e[r] +
@@ -22485,21 +22497,21 @@ module.exports = (function(e, t) {
             function extractClassName(e) {
               const t = e.nodes[0].nodes;
               const r = t.some(
-                e =>
+                (e) =>
                   e.type !== "class" &&
                   e.type !== "pseudo" &&
                   e.type !== "combinator"
               );
               if (r) return null;
-              const n = t.filter(e => e.type === "class");
+              const n = t.filter((e) => e.type === "class");
               if (n.length === 1) {
                 const e = t
                   .slice(
-                    t.findIndex(e => e.sourceIndex === n[0].sourceIndex) + 1
+                    t.findIndex((e) => e.sourceIndex === n[0].sourceIndex) + 1
                   )
-                  .filter(e => e.type === "pseudo")
+                  .filter((e) => e.type === "pseudo")
                   .filter(Boolean)
-                  .map(e => e.value.replace(/^:+|:+$/g, ""));
+                  .map((e) => e.value.replace(/^:+|:+$/g, ""));
                 return { className: n[0].value, pseudo: e };
               }
               if (
@@ -22509,11 +22521,11 @@ module.exports = (function(e, t) {
               ) {
                 const e = t
                   .slice(
-                    t.findIndex(e => e.sourceIndex === n[1].sourceIndex) + 1
+                    t.findIndex((e) => e.sourceIndex === n[1].sourceIndex) + 1
                   )
-                  .filter(e => e.type === "pseudo")
+                  .filter((e) => e.type === "pseudo")
                   .filter(Boolean)
-                  .map(e => e.value.replace(/^:+|:+$/g, ""));
+                  .map((e) => e.value.replace(/^:+|:+$/g, ""));
                 return { className: n[1].value, pseudo: e };
               }
               return null;
@@ -22594,7 +22606,7 @@ module.exports = (function(e, t) {
               pink: "#f66d9b",
               "pink-light": "#fa7ea8",
               "pink-lighter": "#ffbbca",
-              "pink-lightest": "#ffebef"
+              "pink-lightest": "#ffebef",
             };
             e.exports = {
               colors: n,
@@ -22612,7 +22624,7 @@ module.exports = (function(e, t) {
                   "Fira Sans",
                   "Droid Sans",
                   "Helvetica Neue",
-                  "sans-serif"
+                  "sans-serif",
                 ],
                 serif: [
                   "Constantia",
@@ -22624,7 +22636,7 @@ module.exports = (function(e, t) {
                   "Bitstream Vera Serif",
                   "Liberation Serif",
                   "Georgia",
-                  "serif"
+                  "serif",
                 ],
                 mono: [
                   "Menlo",
@@ -22632,8 +22644,8 @@ module.exports = (function(e, t) {
                   "Consolas",
                   "Liberation Mono",
                   "Courier New",
-                  "monospace"
-                ]
+                  "monospace",
+                ],
               },
               textSizes: {
                 xs: ".75rem",
@@ -22644,7 +22656,7 @@ module.exports = (function(e, t) {
                 "2xl": "1.5rem",
                 "3xl": "1.875rem",
                 "4xl": "2.25rem",
-                "5xl": "3rem"
+                "5xl": "3rem",
               },
               fontWeights: {
                 hairline: 100,
@@ -22655,7 +22667,7 @@ module.exports = (function(e, t) {
                 semibold: 600,
                 bold: 700,
                 extrabold: 800,
-                black: 900
+                black: 900,
               },
               leading: { none: 1, tight: 1.25, normal: 1.5, loose: 2 },
               tracking: { tight: "-0.05em", normal: "0", wide: "0.05em" },
@@ -22664,14 +22676,14 @@ module.exports = (function(e, t) {
               backgroundSize: {
                 auto: "auto",
                 cover: "cover",
-                contain: "contain"
+                contain: "contain",
               },
               borderWidths: {
                 default: "1px",
                 0: "0",
                 2: "2px",
                 4: "4px",
-                8: "8px"
+                8: "8px",
               },
               borderColors: global.Object.assign(
                 { default: n["grey-light"] },
@@ -22682,7 +22694,7 @@ module.exports = (function(e, t) {
                 sm: ".125rem",
                 default: ".25rem",
                 lg: ".5rem",
-                full: "9999px"
+                full: "9999px",
               },
               width: {
                 auto: "auto",
@@ -22713,7 +22725,7 @@ module.exports = (function(e, t) {
                 "1/6": "16.66667%",
                 "5/6": "83.33333%",
                 full: "100%",
-                screen: "100vw"
+                screen: "100vw",
               },
               height: {
                 auto: "auto",
@@ -22733,7 +22745,7 @@ module.exports = (function(e, t) {
                 48: "12rem",
                 64: "16rem",
                 full: "100%",
-                screen: "100vh"
+                screen: "100vh",
               },
               minWidth: { 0: "0", full: "100%" },
               minHeight: { 0: "0", full: "100%", screen: "100vh" },
@@ -22747,7 +22759,7 @@ module.exports = (function(e, t) {
                 "3xl": "80rem",
                 "4xl": "90rem",
                 "5xl": "100rem",
-                full: "100%"
+                full: "100%",
               },
               maxHeight: { full: "100%", screen: "100vh" },
               padding: {
@@ -22765,7 +22777,7 @@ module.exports = (function(e, t) {
                 16: "4rem",
                 20: "5rem",
                 24: "6rem",
-                32: "8rem"
+                32: "8rem",
               },
               margin: {
                 auto: "auto",
@@ -22783,7 +22795,7 @@ module.exports = (function(e, t) {
                 16: "4rem",
                 20: "5rem",
                 24: "6rem",
-                32: "8rem"
+                32: "8rem",
               },
               negativeMargin: {
                 px: "1px",
@@ -22800,7 +22812,7 @@ module.exports = (function(e, t) {
                 16: "4rem",
                 20: "5rem",
                 24: "6rem",
-                32: "8rem"
+                32: "8rem",
               },
               shadows: {
                 default: "0 2px 4px 0 rgba(0,0,0,0.10)",
@@ -22810,7 +22822,7 @@ module.exports = (function(e, t) {
                   "0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08)",
                 inner: "inset 0 2px 4px 0 rgba(0,0,0,0.06)",
                 outline: "0 0 0 3px rgba(52,144,220,0.5)",
-                none: "none"
+                none: "none",
               },
               zIndex: {
                 auto: "auto",
@@ -22819,7 +22831,7 @@ module.exports = (function(e, t) {
                 20: 20,
                 30: 30,
                 40: 40,
-                50: 50
+                50: 50,
               },
               opacity: { 0: "0", 25: ".25", 50: ".5", 75: ".75", 100: "1" },
               svgFill: { current: "currentColor" },
@@ -22874,10 +22886,10 @@ module.exports = (function(e, t) {
                 visibility: ["responsive"],
                 whitespace: ["responsive"],
                 width: ["responsive"],
-                zIndex: ["responsive"]
+                zIndex: ["responsive"],
               },
               plugins: [r(251)({})],
-              options: { prefix: "", important: false, separator: ":" }
+              options: { prefix: "", important: false, separator: ":" },
             };
           },
           ,
@@ -22893,7 +22905,7 @@ module.exports = (function(e, t) {
                 enumerable: true,
                 get: function get() {
                   return n[e];
-                }
+                },
               });
             });
             var i = r(302);
@@ -22903,7 +22915,7 @@ module.exports = (function(e, t) {
                 enumerable: true,
                 get: function get() {
                   return i[e];
-                }
+                },
               });
             });
             var o = r(941);
@@ -22913,7 +22925,7 @@ module.exports = (function(e, t) {
                 enumerable: true,
                 get: function get() {
                   return o[e];
-                }
+                },
               });
             });
           },
@@ -22969,7 +22981,7 @@ module.exports = (function(e, t) {
               comma: function comma(e) {
                 var comma = ",";
                 return r.split(e, [comma], true);
-              }
+              },
             };
             t.default = r;
             e.exports = t["default"];
@@ -23037,17 +23049,17 @@ module.exports = (function(e, t) {
               const t = [
                 (e, t) =>
                   (0, a.default)({
-                    [`border${t}`]: { "border-width": `${e}` }
+                    [`border${t}`]: { "border-width": `${e}` },
                   }),
                 (e, t) =>
                   (0, a.default)({
                     [`border-t${t}`]: { "border-top-width": `${e}` },
                     [`border-r${t}`]: { "border-right-width": `${e}` },
                     [`border-b${t}`]: { "border-bottom-width": `${e}` },
-                    [`border-l${t}`]: { "border-left-width": `${e}` }
-                  })
+                    [`border-l${t}`]: { "border-left-width": `${e}` },
+                  }),
               ];
-              return i.default.flatMap(t, t => {
+              return i.default.flatMap(t, (t) => {
                 return i.default.flatMap(e, (e, r) => {
                   return t(e, r === "default" ? "" : `-${r}`);
                 });
@@ -23064,7 +23076,7 @@ module.exports = (function(e, t) {
             t.default = function(e, t) {
               const r = (0, c.default)(a.default, e.modules, e);
               if (e.options.important) {
-                r.walkDecls(e => (e.important = true));
+                r.walkDecls((e) => (e.important = true));
               }
               const n = i.default.root({ nodes: r.nodes });
               (0, u.default)(n, e.options.prefix);
@@ -23152,8 +23164,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -23349,8 +23361,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -23452,7 +23464,7 @@ module.exports = (function(e, t) {
                 (0, u.default)({
                   "float-right": { float: "right" },
                   "float-left": { float: "left" },
-                  "float-none": { float: "none" }
+                  "float-none": { float: "none" },
                 }),
                 a.default.parse(
                   `\n      .clearfix:after {\n        content: "";\n        display: table;\n        clear: both;\n      }\n    `
@@ -23852,7 +23864,7 @@ module.exports = (function(e, t) {
                       "Node#before is deprecated. Use Node#raws.before"
                     );
                     this.raws.before = e;
-                  }
+                  },
                 },
                 {
                   key: "between",
@@ -23867,8 +23879,8 @@ module.exports = (function(e, t) {
                       "Node#between is deprecated. Use Node#raws.between"
                     );
                     this.raws.between = e;
-                  }
-                }
+                  },
+                },
               ]);
               return Node;
             })();
@@ -23885,7 +23897,7 @@ module.exports = (function(e, t) {
                 "object-cover": { "object-fit": "cover" },
                 "object-fill": { "object-fit": "fill" },
                 "object-none": { "object-fit": "none" },
-                "object-scale-down": { "object-fit": "scale-down" }
+                "object-scale-down": { "object-fit": "scale-down" },
               });
             };
             var n = r(293);
@@ -24089,7 +24101,7 @@ module.exports = (function(e, t) {
               "fill-opacity": true,
               "stroke-dashoffset": true,
               "stroke-opacity": true,
-              "stroke-width": true
+              "stroke-width": true,
             };
             function dashify(e) {
               return e
@@ -24458,7 +24470,7 @@ module.exports = (function(e, t) {
               this.__data__ = {
                 hash: new Hash(),
                 map: new (ce || ListCache)(),
-                string: new Hash()
+                string: new Hash(),
               };
             }
             function mapCacheDelete(e) {
@@ -24788,7 +24800,9 @@ module.exports = (function(e, t) {
               return (
                 !!t &&
                 (typeof e == "number" || L.test(e)) &&
-                (e > -1 && e % 1 == 0 && e < t)
+                e > -1 &&
+                e % 1 == 0 &&
+                e < t
               );
             }
             function isKeyable(e) {
@@ -25502,7 +25516,7 @@ module.exports = (function(e, t) {
                       "Node#before is deprecated. Use Node#raws.before"
                     );
                     this.raws.before = e;
-                  }
+                  },
                 },
                 {
                   key: "between",
@@ -25517,8 +25531,8 @@ module.exports = (function(e, t) {
                       "Node#between is deprecated. Use Node#raws.between"
                     );
                     this.raws.between = e;
-                  }
-                }
+                  },
+                },
               ]);
               return Node;
             })();
@@ -25540,7 +25554,7 @@ module.exports = (function(e, t) {
                   end: n[1],
                   pre: r.slice(0, n[0]),
                   body: r.slice(n[0] + e.length, n[1]),
-                  post: r.slice(n[1] + t.length)
+                  post: r.slice(n[1] + t.length),
                 }
               );
             }
@@ -25595,7 +25609,7 @@ module.exports = (function(e, t) {
             Object.defineProperty(t, "__esModule", { value: true });
             t.default = function(e) {
               return function(t) {
-                t.walkAtRules("screen", t => {
+                t.walkAtRules("screen", (t) => {
                   const r = t.params;
                   if (!i.default.has(e.screens, r)) {
                     throw t.error(`No \`${r}\` screen found.`);
@@ -25622,24 +25636,24 @@ module.exports = (function(e, t) {
               const t = [];
               const r = [];
               const n = {};
-              e.plugins.forEach(o => {
+              e.plugins.forEach((o) => {
                 o({
                   config: (t, r) => i.default.get(e, t, r),
                   e: c.default,
-                  prefix: t => {
+                  prefix: (t) => {
                     return (0, g.default)(e.options.prefix, t);
                   },
                   addUtilities: (t, n) => {
                     const o = {
                       variants: [],
                       respectPrefix: true,
-                      respectImportant: true
+                      respectImportant: true,
                     };
                     n = Array.isArray(n)
                       ? Object.assign({}, o, { variants: n })
                       : i.default.defaults(n, o);
                     const s = a.default.root({ nodes: parseStyles(t) });
-                    s.walkRules(t => {
+                    s.walkRules((t) => {
                       if (n.respectPrefix) {
                         t.selector = (0, g.default)(
                           e.options.prefix,
@@ -25650,7 +25664,7 @@ module.exports = (function(e, t) {
                         n.respectImportant &&
                         i.default.get(e, "options.important")
                       ) {
-                        t.walkDecls(e => (e.important = true));
+                        t.walkDecls((e) => (e.important = true));
                       }
                     });
                     r.push((0, y.default)(s.nodes, n.variants));
@@ -25658,7 +25672,7 @@ module.exports = (function(e, t) {
                   addComponents: (r, n) => {
                     n = Object.assign({ respectPrefix: true }, n);
                     const i = a.default.root({ nodes: parseStyles(r) });
-                    i.walkRules(t => {
+                    i.walkRules((t) => {
                       if (n.respectPrefix) {
                         t.selector = (0, g.default)(
                           e.options.prefix,
@@ -25670,7 +25684,7 @@ module.exports = (function(e, t) {
                   },
                   addVariant: (e, t) => {
                     n[e] = (0, p.default)(t);
-                  }
+                  },
                 });
               });
               return { components: t, utilities: r, variantGenerators: n };
@@ -25698,7 +25712,7 @@ module.exports = (function(e, t) {
               if (!Array.isArray(e)) {
                 return parseStyles([e]);
               }
-              return i.default.flatMap(e, e =>
+              return i.default.flatMap(e, (e) =>
                 e instanceof u.default ? e : (0, d.default)(e)
               );
             }
@@ -25935,8 +25949,8 @@ module.exports = (function(e, t) {
             Object.defineProperty(t, "__esModule", { value: true });
             t.default = function(e, t) {
               const r = typeof e === "function" ? e : () => e;
-              return (0, i.default)(e => {
-                e.walkClasses(e => {
+              return (0, i.default)((e) => {
+                e.walkClasses((e) => {
                   e.value = `${r("." + e.value)}${e.value}`;
                 });
               }).processSync(t);
@@ -25960,38 +25974,38 @@ module.exports = (function(e, t) {
               const t = [
                 (e, t) =>
                   (0, a.default)({
-                    [`rounded${t}`]: { "border-radius": `${e}` }
+                    [`rounded${t}`]: { "border-radius": `${e}` },
                   }),
                 (e, t) =>
                   (0, a.default)({
                     [`rounded-t${t}`]: {
                       "border-top-left-radius": `${e}`,
-                      "border-top-right-radius": `${e}`
+                      "border-top-right-radius": `${e}`,
                     },
                     [`rounded-r${t}`]: {
                       "border-top-right-radius": `${e}`,
-                      "border-bottom-right-radius": `${e}`
+                      "border-bottom-right-radius": `${e}`,
                     },
                     [`rounded-b${t}`]: {
                       "border-bottom-right-radius": `${e}`,
-                      "border-bottom-left-radius": `${e}`
+                      "border-bottom-left-radius": `${e}`,
                     },
                     [`rounded-l${t}`]: {
                       "border-top-left-radius": `${e}`,
-                      "border-bottom-left-radius": `${e}`
-                    }
+                      "border-bottom-left-radius": `${e}`,
+                    },
                   }),
                 (e, t) =>
                   (0, a.default)({
                     [`rounded-tl${t}`]: { "border-top-left-radius": `${e}` },
                     [`rounded-tr${t}`]: { "border-top-right-radius": `${e}` },
                     [`rounded-br${t}`]: {
-                      "border-bottom-right-radius": `${e}`
+                      "border-bottom-right-radius": `${e}`,
                     },
-                    [`rounded-bl${t}`]: { "border-bottom-left-radius": `${e}` }
-                  })
+                    [`rounded-bl${t}`]: { "border-bottom-left-radius": `${e}` },
+                  }),
               ];
-              return i.default.flatMap(t, t => {
+              return i.default.flatMap(t, (t) => {
                 return i.default.flatMap(e, (e, r) => {
                   return t(e, r === "default" ? "" : `-${r}`);
                 });
@@ -26257,8 +26271,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -26771,14 +26785,14 @@ module.exports = (function(e, t) {
                   get: function get() {
                     if (!this.nodes) return undefined;
                     return this.nodes[0];
-                  }
+                  },
                 },
                 {
                   key: "last",
                   get: function get() {
                     if (!this.nodes) return undefined;
                     return this.nodes[this.nodes.length - 1];
-                  }
+                  },
                 },
                 {
                   key: "semicolon",
@@ -26793,7 +26807,7 @@ module.exports = (function(e, t) {
                       "Node#semicolon is deprecated. Use Node#raws.semicolon"
                     );
                     this.raws.semicolon = e;
-                  }
+                  },
                 },
                 {
                   key: "after",
@@ -26808,8 +26822,8 @@ module.exports = (function(e, t) {
                       "Node#after is deprecated. Use Node#raws.after"
                     );
                     this.raws.after = e;
-                  }
-                }
+                  },
+                },
               ]);
               return Container;
             })(f.default);
@@ -27075,44 +27089,44 @@ module.exports = (function(e, t) {
                   key: "processor",
                   get: function get() {
                     return this.result.processor;
-                  }
+                  },
                 },
                 {
                   key: "opts",
                   get: function get() {
                     return this.result.opts;
-                  }
+                  },
                 },
                 {
                   key: "css",
                   get: function get() {
                     return this.stringify().css;
-                  }
+                  },
                 },
                 {
                   key: "content",
                   get: function get() {
                     return this.stringify().content;
-                  }
+                  },
                 },
                 {
                   key: "map",
                   get: function get() {
                     return this.stringify().map;
-                  }
+                  },
                 },
                 {
                   key: "root",
                   get: function get() {
                     return this.sync().root;
-                  }
+                  },
                 },
                 {
                   key: "messages",
                   get: function get() {
                     return this.sync().messages;
-                  }
-                }
+                  },
+                },
               ]);
               return LazyResult;
             })();
@@ -27239,7 +27253,7 @@ module.exports = (function(e, t) {
                 ["flip", k],
                 ["partial", b],
                 ["partialRight", w],
-                ["rearg", S]
+                ["rearg", S],
               ];
               var B = "[object Arguments]",
                 G = "[object Array]",
@@ -27376,7 +27390,7 @@ module.exports = (function(e, t) {
                   Tt,
                   jt,
                   gt,
-                  Nt
+                  Nt,
                 ].join("|"),
                 "g"
               );
@@ -27412,7 +27426,7 @@ module.exports = (function(e, t) {
                 "clearTimeout",
                 "isFinite",
                 "parseInt",
-                "setTimeout"
+                "setTimeout",
               ];
               var Vt = -1;
               var Kt = {};
@@ -27623,21 +27637,21 @@ module.exports = (function(e, t) {
                 Œ: "Oe",
                 œ: "oe",
                 ŉ: "'n",
-                ſ: "s"
+                ſ: "s",
               };
               var Jt = {
                 "&": "&amp;",
                 "<": "&lt;",
                 ">": "&gt;",
                 '"': "&quot;",
-                "'": "&#39;"
+                "'": "&#39;",
               };
               var Yt = {
                 "&amp;": "&",
                 "&lt;": "<",
                 "&gt;": ">",
                 "&quot;": '"',
-                "&#39;": "'"
+                "&#39;": "'",
               };
               var Zt = {
                 "\\": "\\",
@@ -27645,7 +27659,7 @@ module.exports = (function(e, t) {
                 "\n": "n",
                 "\r": "r",
                 "\u2028": "u2028",
-                "\u2029": "u2029"
+                "\u2029": "u2029",
               };
               var Xt = parseFloat,
                 er = parseInt;
@@ -28173,7 +28187,7 @@ module.exports = (function(e, t) {
                   evaluate: Me,
                   interpolate: Oe,
                   variable: "",
-                  imports: { _: lodash }
+                  imports: { _: lodash },
                 };
                 lodash.prototype = baseLodash.prototype;
                 lodash.prototype.constructor = lodash;
@@ -28360,7 +28374,7 @@ module.exports = (function(e, t) {
                   this.__data__ = {
                     hash: new Hash(),
                     map: new (Zt || ListCache)(),
-                    string: new Hash()
+                    string: new Hash(),
                   };
                 }
                 function mapCacheDelete(e) {
@@ -28518,7 +28532,7 @@ module.exports = (function(e, t) {
                       configurable: true,
                       enumerable: true,
                       value: r,
-                      writable: true
+                      writable: true,
                     });
                   } else {
                     e[t] = r;
@@ -29275,7 +29289,7 @@ module.exports = (function(e, t) {
                         configurable: true,
                         enumerable: false,
                         value: constant(t),
-                        writable: true
+                        writable: true,
                       });
                     };
                 function baseShuffle(e) {
@@ -30305,7 +30319,8 @@ module.exports = (function(e, t) {
                       C = t.constructor;
                     if (
                       w != C &&
-                      ("constructor" in e && "constructor" in t) &&
+                      "constructor" in e &&
+                      "constructor" in t &&
                       !(
                         typeof w == "function" &&
                         w instanceof w &&
@@ -30556,7 +30571,9 @@ module.exports = (function(e, t) {
                   return (
                     !!t &&
                     (r == "number" || (r != "symbol" && Qe.test(e))) &&
-                    (e > -1 && e % 1 == 0 && e < t)
+                    e > -1 &&
+                    e % 1 == 0 &&
+                    e < t
                   );
                 }
                 function isIterateeCall(e, t, r) {
@@ -31363,7 +31380,7 @@ module.exports = (function(e, t) {
                     t.__actions__.push({
                       func: thru,
                       args: [reverse],
-                      thisArg: r
+                      thisArg: r,
                     });
                     return new LodashWrapper(t, this.__chain__);
                   }
@@ -31800,7 +31817,7 @@ module.exports = (function(e, t) {
                   return debounce(e, t, {
                     leading: n,
                     maxWait: t,
-                    trailing: i
+                    trailing: i,
                   });
                 }
                 function unary(e) {
@@ -33219,7 +33236,7 @@ module.exports = (function(e, t) {
                     "curry",
                     "curryRight",
                     "partial",
-                    "partialRight"
+                    "partialRight",
                   ],
                   function(e) {
                     lodash[e].placeholder = lodash;
@@ -33237,7 +33254,7 @@ module.exports = (function(e, t) {
                     } else {
                       i.__views__.push({
                         size: Ft(n, L),
-                        type: e + (i.__dir__ < 0 ? "Right" : "")
+                        type: e + (i.__dir__ < 0 ? "Right" : ""),
                       });
                     }
                     return i;
@@ -33255,7 +33272,7 @@ module.exports = (function(e, t) {
                     var t = this.clone();
                     t.__iteratees__.push({
                       iteratee: getIteratee(e, 3),
-                      type: r
+                      type: r,
                     });
                     t.__filtered__ = t.__filtered__ || n;
                     return t;
@@ -33624,7 +33641,7 @@ module.exports = (function(e, t) {
                         V,
                         K - z,
                         V,
-                        E - z
+                        E - z,
                       ]);
                       K = E;
                     } else {
@@ -33798,7 +33815,7 @@ module.exports = (function(e, t) {
             Object.defineProperty(t, "__esModule", { value: true });
             t.default = function(e, { components: t }, r) {
               return function(e) {
-                e.walkAtRules("tailwind", e => {
+                e.walkAtRules("tailwind", (e) => {
                   if (e.params === "preflight") {
                     const t = u.default.parse(
                       i.default.readFileSync(
@@ -33832,8 +33849,8 @@ module.exports = (function(e, t) {
             function updateSource(e, t) {
               return a.default.tap(
                 Array.isArray(e) ? u.default.root({ nodes: e }) : e,
-                e => {
-                  e.walk(e => (e.source = t));
+                (e) => {
+                  e.walk((e) => (e.source = t));
                 }
               );
             }
@@ -33875,8 +33892,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -34108,7 +34125,7 @@ module.exports = (function(e, t) {
                 var e = this;
                 this.css = "";
                 this.map = new o.default.SourceMapGenerator({
-                  file: this.outputFile()
+                  file: this.outputFile(),
                 });
                 var t = 1;
                 var r = 1;
@@ -34123,14 +34140,14 @@ module.exports = (function(e, t) {
                         generated: { line: t, column: r - 1 },
                         original: {
                           line: a.source.start.line,
-                          column: a.source.start.column - 1
-                        }
+                          column: a.source.start.column - 1,
+                        },
                       });
                     } else {
                       e.map.addMapping({
                         source: "<no source>",
                         original: { line: 1, column: 0 },
-                        generated: { line: t, column: r - 1 }
+                        generated: { line: t, column: r - 1 },
                       });
                     }
                   }
@@ -34149,14 +34166,14 @@ module.exports = (function(e, t) {
                         generated: { line: t, column: r - 1 },
                         original: {
                           line: a.source.end.line,
-                          column: a.source.end.column
-                        }
+                          column: a.source.end.column,
+                        },
                       });
                     } else {
                       e.map.addMapping({
                         source: "<no source>",
                         original: { line: 1, column: 0 },
-                        generated: { line: t, column: r - 1 }
+                        generated: { line: t, column: r - 1 },
                       });
                     }
                   }
@@ -34717,12 +34734,12 @@ module.exports = (function(e, t) {
                 (e.operator === ">=" || e.operator === "<=");
               var s =
                 cmp(this.semver, "<", e.semver, t) &&
-                ((this.operator === ">=" || this.operator === ">") &&
-                  (e.operator === "<=" || e.operator === "<"));
+                (this.operator === ">=" || this.operator === ">") &&
+                (e.operator === "<=" || e.operator === "<");
               var u =
                 cmp(this.semver, ">", e.semver, t) &&
-                ((this.operator === "<=" || this.operator === "<") &&
-                  (e.operator === ">=" || e.operator === ">"));
+                (this.operator === "<=" || this.operator === "<") &&
+                (e.operator === ">=" || e.operator === ">");
               return n || i || (o && a) || s || u;
             };
             t.Range = Range;
@@ -35320,7 +35337,7 @@ module.exports = (function(e, t) {
                 breakEvery: true,
                 reindent: function reindent(e) {
                   return e.name.length + 2;
-                }
+                },
               });
             }
             function maxSelectorLength(e, t) {
@@ -35329,7 +35346,7 @@ module.exports = (function(e, t) {
                 reduce: true,
                 reindent: function reindent(e) {
                   return (0, u.default)(e, t.indentChar, t.indentSize).length;
-                }
+                },
               });
             }
             function maxValueLength(e, t) {
@@ -35342,7 +35359,7 @@ module.exports = (function(e, t) {
                 breakEvery: true,
                 reindent: function reindent(e) {
                   return (0, u.default)(e).length + e.prop.length + 2;
-                }
+                },
               });
             }
           },
@@ -35416,17 +35433,17 @@ module.exports = (function(e, t) {
               return function(r) {
                 const n = buildClassTable(r);
                 const o = buildShadowTable(t);
-                r.walkRules(t => {
-                  t.walkAtRules("apply", t => {
+                r.walkRules((t) => {
+                  t.walkAtRules("apply", (t) => {
                     const r = a.default.list.space(t.params);
-                    const [s, u] = i.default.partition(r, e => {
+                    const [s, u] = i.default.partition(r, (e) => {
                       return i.default.startsWith(e, "--");
                     });
                     const l = (0, i.default)(u)
-                      .reject(e => e === "!important")
-                      .flatMap(r => {
+                      .reject((e) => e === "!important")
+                      .flatMap((r) => {
                         const a = normalizeClassName(r);
-                        const s = e => {
+                        const s = (e) => {
                           return t.error(e);
                         };
                         return i.default.reduce(
@@ -35443,15 +35460,15 @@ module.exports = (function(e, t) {
                               throw s(
                                 `\`@apply\` cannot be used with \`${a}\` because \`${a}\` either cannot be found, or its actual definition includes a pseudo-selector like :hover, :active, etc. If you're sure that \`${a}\` exists, make sure that any \`@import\` statements are being properly processed *before* Tailwind CSS sees your CSS, as \`@apply\` can only be used for classes in the same CSS tree.`
                               );
-                            }
+                            },
                           ],
                           (e, t) => (!i.default.isEmpty(e) ? e : t()),
                           []
                         );
                       })
                       .value();
-                    i.default.tap(i.default.last(r) === "!important", e => {
-                      l.forEach(t => (t.important = e));
+                    i.default.tap(i.default.last(r) === "!important", (e) => {
+                      l.forEach((t) => (t.important = e));
                     });
                     t.before(l);
                     t.params = s.join(" ");
@@ -35475,7 +35492,7 @@ module.exports = (function(e, t) {
             }
             function buildClassTable(e) {
               const t = {};
-              e.walkRules(e => {
+              e.walkRules((e) => {
                 if (!i.default.has(t, e.selector)) {
                   t[e.selector] = [];
                 }
@@ -35485,7 +35502,7 @@ module.exports = (function(e, t) {
             }
             function buildShadowTable(e) {
               const t = a.default.root();
-              a.default.root({ nodes: e }).walkAtRules("variants", e => {
+              a.default.root({ nodes: e }).walkAtRules("variants", (e) => {
                 t.append(e.clone().nodes);
               });
               return buildClassTable(t);
@@ -35528,7 +35545,7 @@ module.exports = (function(e, t) {
             t.default = function() {
               return (0, i.default)({
                 "select-none": { "user-select": "none" },
-                "select-text": { "user-select": "text" }
+                "select-text": { "user-select": "text" },
               });
             };
             var n = r(293);
@@ -35694,7 +35711,7 @@ module.exports = (function(e, t) {
               { name: "visibility", generator: Fe.default },
               { name: "whitespace", generator: $e.default },
               { name: "width", generator: Ve.default },
-              { name: "zIndex", generator: Qe.default }
+              { name: "zIndex", generator: Qe.default },
             ];
           },
           ,
@@ -35905,7 +35922,7 @@ module.exports = (function(e, t) {
               "?": { open: "(?:", close: ")?" },
               "+": { open: "(?:", close: ")+" },
               "*": { open: "(?:", close: ")*" },
-              "@": { open: "(?:", close: ")" }
+              "@": { open: "(?:", close: ")" },
             };
             var s = "[^/]";
             var u = s + "*?";
@@ -36145,7 +36162,7 @@ module.exports = (function(e, t) {
                       start: b - 1,
                       reStart: n.length,
                       open: a[d].open,
-                      close: a[d].close
+                      close: a[d].close,
                     });
                     n += d === "!" ? "(?:(?!(?:" : "(?:";
                     this.debug("plType %j %j", d, n);
@@ -36996,7 +37013,7 @@ module.exports = (function(e, t) {
                     this._parseMappings(this._mappings, this.sourceRoot);
                   }
                   return this.__generatedMappings;
-                }
+                },
               }
             );
             SourceMapConsumer.prototype.__originalMappings = null;
@@ -37009,7 +37026,7 @@ module.exports = (function(e, t) {
                     this._parseMappings(this._mappings, this.sourceRoot);
                   }
                   return this.__originalMappings;
-                }
+                },
               }
             );
             SourceMapConsumer.prototype._charIsMappingSeparator = function SourceMapConsumer_charIsMappingSeparator(
@@ -37059,7 +37076,7 @@ module.exports = (function(e, t) {
                   generatedColumn: e.generatedColumn,
                   originalLine: e.originalLine,
                   originalColumn: e.originalColumn,
-                  name: e.name === null ? null : this._names.at(e.name)
+                  name: e.name === null ? null : this._names.at(e.name),
                 };
               }, this).forEach(e, i);
             };
@@ -37070,7 +37087,7 @@ module.exports = (function(e, t) {
               var r = {
                 source: n.getArg(e, "source"),
                 originalLine: t,
-                originalColumn: n.getArg(e, "column", 0)
+                originalColumn: n.getArg(e, "column", 0),
               };
               if (this.sourceRoot != null) {
                 r.source = n.relative(this.sourceRoot, r.source);
@@ -37096,7 +37113,7 @@ module.exports = (function(e, t) {
                     o.push({
                       line: n.getArg(s, "generatedLine", null),
                       column: n.getArg(s, "generatedColumn", null),
-                      lastColumn: n.getArg(s, "lastGeneratedColumn", null)
+                      lastColumn: n.getArg(s, "lastGeneratedColumn", null),
                     });
                     s = this._originalMappings[++a];
                   }
@@ -37106,7 +37123,7 @@ module.exports = (function(e, t) {
                     o.push({
                       line: n.getArg(s, "generatedLine", null),
                       column: n.getArg(s, "generatedColumn", null),
-                      lastColumn: n.getArg(s, "lastGeneratedColumn", null)
+                      lastColumn: n.getArg(s, "lastGeneratedColumn", null),
                     });
                     s = this._originalMappings[++a];
                   }
@@ -37191,7 +37208,7 @@ module.exports = (function(e, t) {
                     ? n.join(this.sourceRoot, e)
                     : e;
                 }, this);
-              }
+              },
             });
             function Mapping() {
               this.generatedLine = 0;
@@ -37317,7 +37334,7 @@ module.exports = (function(e, t) {
             ) {
               var t = {
                 generatedLine: n.getArg(e, "line"),
-                generatedColumn: n.getArg(e, "column")
+                generatedColumn: n.getArg(e, "column"),
               };
               var r = this._findMapping(
                 t,
@@ -37345,7 +37362,7 @@ module.exports = (function(e, t) {
                     source: o,
                     line: n.getArg(i, "originalLine", null),
                     column: n.getArg(i, "originalColumn", null),
-                    name: a
+                    name: a,
                   };
                 }
               }
@@ -37408,7 +37425,7 @@ module.exports = (function(e, t) {
               var r = {
                 source: t,
                 originalLine: n.getArg(e, "line"),
-                originalColumn: n.getArg(e, "column")
+                originalColumn: n.getArg(e, "column"),
               };
               var i = this._findMapping(
                 r,
@@ -37424,7 +37441,7 @@ module.exports = (function(e, t) {
                   return {
                     line: n.getArg(o, "generatedLine", null),
                     column: n.getArg(o, "generatedColumn", null),
-                    lastColumn: n.getArg(o, "lastGeneratedColumn", null)
+                    lastColumn: n.getArg(o, "lastGeneratedColumn", null),
                   };
                 }
               }
@@ -37462,9 +37479,9 @@ module.exports = (function(e, t) {
                 return {
                   generatedOffset: {
                     generatedLine: r + 1,
-                    generatedColumn: i + 1
+                    generatedColumn: i + 1,
                   },
-                  consumer: new SourceMapConsumer(n.getArg(e, "map"))
+                  consumer: new SourceMapConsumer(n.getArg(e, "map")),
                 };
               });
             }
@@ -37489,7 +37506,7 @@ module.exports = (function(e, t) {
                     }
                   }
                   return e;
-                }
+                },
               }
             );
             IndexedSourceMapConsumer.prototype.originalPositionFor = function IndexedSourceMapConsumer_originalPositionFor(
@@ -37497,7 +37514,7 @@ module.exports = (function(e, t) {
             ) {
               var t = {
                 generatedLine: n.getArg(e, "line"),
-                generatedColumn: n.getArg(e, "column")
+                generatedColumn: n.getArg(e, "column"),
               };
               var r = i.search(t, this._sections, function(e, t) {
                 var r = e.generatedLine - t.generatedOffset.generatedLine;
@@ -37517,7 +37534,7 @@ module.exports = (function(e, t) {
                   (o.generatedOffset.generatedLine === t.generatedLine
                     ? o.generatedOffset.generatedColumn - 1
                     : 0),
-                bias: e.bias
+                bias: e.bias,
               });
             };
             IndexedSourceMapConsumer.prototype.hasContentsOfAllSources = function IndexedSourceMapConsumer_hasContentsOfAllSources() {
@@ -37558,7 +37575,7 @@ module.exports = (function(e, t) {
                       i.column +
                       (r.generatedOffset.generatedLine === i.line
                         ? r.generatedOffset.generatedColumn - 1
-                        : 0)
+                        : 0),
                   };
                   return o;
                 }
@@ -37596,7 +37613,7 @@ module.exports = (function(e, t) {
                         : 0),
                     originalLine: u.originalLine,
                     originalColumn: u.originalColumn,
-                    name: c
+                    name: c,
                   };
                   this.__generatedMappings.push(f);
                   if (typeof f.originalLine === "number") {
@@ -37671,8 +37688,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -37791,13 +37808,13 @@ module.exports = (function(e, t) {
                     return this.qualifiedName(
                       this.raws.attribute || this.attribute
                     );
-                  }
+                  },
                 },
                 {
                   key: "insensitiveFlag",
                   get: function get() {
                     return this.insensitive ? "i" : "";
-                  }
+                  },
                 },
                 {
                   key: "value",
@@ -37809,7 +37826,7 @@ module.exports = (function(e, t) {
                     if (this._constructed) {
                       delete this.raws.value;
                     }
-                  }
+                  },
                 },
                 {
                   key: "namespace",
@@ -37821,7 +37838,7 @@ module.exports = (function(e, t) {
                     if (this._constructed) {
                       delete this.raws.namespace;
                     }
-                  }
+                  },
                 },
                 {
                   key: "attribute",
@@ -37833,8 +37850,8 @@ module.exports = (function(e, t) {
                     if (this._constructed) {
                       delete this.raws.attibute;
                     }
-                  }
-                }
+                  },
+                },
               ]);
               return Attribute;
             })(o.default);
@@ -37985,7 +38002,7 @@ module.exports = (function(e, t) {
                       source: this.source,
                       line: this.line,
                       column: this.column,
-                      name: this.name
+                      name: this.name,
                     });
                   }
                 }
@@ -38069,7 +38086,7 @@ module.exports = (function(e, t) {
                       source: n.source,
                       original: { line: n.line, column: n.column },
                       generated: { line: t.line, column: t.column },
-                      name: n.name
+                      name: n.name,
                     });
                   }
                   o = n.source;
@@ -38079,7 +38096,7 @@ module.exports = (function(e, t) {
                   i = true;
                 } else if (i) {
                   r.addMapping({
-                    generated: { line: t.line, column: t.column }
+                    generated: { line: t.line, column: t.column },
                   });
                   o = null;
                   i = false;
@@ -38096,7 +38113,7 @@ module.exports = (function(e, t) {
                         source: n.source,
                         original: { line: n.line, column: n.column },
                         generated: { line: t.line, column: t.column },
-                        name: n.name
+                        name: n.name,
                       });
                     }
                   } else {
@@ -38291,7 +38308,7 @@ module.exports = (function(e, t) {
               },
               unprefixed: function unprefixed(e) {
                 return e.replace(/^-\w+-/, "");
-              }
+              },
             };
             t.default = r;
             e.exports = t["default"];
@@ -38418,8 +38435,8 @@ module.exports = (function(e, t) {
                   key: "content",
                   get: function get() {
                     return this.css;
-                  }
-                }
+                  },
+                },
               ]);
               return Result;
             })();
@@ -38462,8 +38479,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -38673,7 +38690,7 @@ module.exports = (function(e, t) {
             t.default = function({ tracking: e }) {
               return i.default.map(e, (e, t) => {
                 return (0, a.default)(`tracking-${t}`, {
-                  "letter-spacing": `${e}`
+                  "letter-spacing": `${e}`,
                 });
               });
             };
@@ -38692,7 +38709,7 @@ module.exports = (function(e, t) {
               return (0, i.default)({
                 "bg-fixed": { "background-attachment": "fixed" },
                 "bg-local": { "background-attachment": "local" },
-                "bg-scroll": { "background-attachment": "scroll" }
+                "bg-scroll": { "background-attachment": "scroll" },
               });
             };
             var n = r(293);
@@ -38706,7 +38723,7 @@ module.exports = (function(e, t) {
               objectify: r(588),
               parse: r(475),
               async: r(292),
-              sync: r(965)
+              sync: r(965),
             };
             e.exports = n;
           },
@@ -38725,8 +38742,8 @@ module.exports = (function(e, t) {
                 truncate: {
                   overflow: "hidden",
                   "text-overflow": "ellipsis",
-                  "white-space": "nowrap"
-                }
+                  "white-space": "nowrap",
+                },
               });
             };
             var n = r(293);
@@ -38757,7 +38774,7 @@ module.exports = (function(e, t) {
                 "object-right": { "object-position": "right" },
                 "object-right-bottom": { "object-position": "right bottom" },
                 "object-right-top": { "object-position": "right top" },
-                "object-top": { "object-position": "top" }
+                "object-top": { "object-position": "top" },
               });
             };
             var n = r(293);
@@ -38802,8 +38819,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -38823,7 +38840,7 @@ module.exports = (function(e, t) {
                   this.spaces.before,
                   this.ns,
                   String("." + this.value),
-                  this.spaces.after
+                  this.spaces.after,
                 ].join("");
               };
               return ClassName;
@@ -38849,8 +38866,8 @@ module.exports = (function(e, t) {
                     value: e,
                     enumerable: false,
                     writable: true,
-                    configurable: true
-                  }
+                    configurable: true,
+                  },
                 });
               };
             } else {
@@ -38884,22 +38901,22 @@ module.exports = (function(e, t) {
                   (0, a.default)({
                     [`-my-${t}`]: {
                       "margin-top": `${e}`,
-                      "margin-bottom": `${e}`
+                      "margin-bottom": `${e}`,
                     },
                     [`-mx-${t}`]: {
                       "margin-left": `${e}`,
-                      "margin-right": `${e}`
-                    }
+                      "margin-right": `${e}`,
+                    },
                   }),
                 (e, t) =>
                   (0, a.default)({
                     [`-mt-${t}`]: { "margin-top": `${e}` },
                     [`-mr-${t}`]: { "margin-right": `${e}` },
                     [`-mb-${t}`]: { "margin-bottom": `${e}` },
-                    [`-ml-${t}`]: { "margin-left": `${e}` }
-                  })
+                    [`-ml-${t}`]: { "margin-left": `${e}` },
+                  }),
               ];
-              return i.default.flatMap(t, t => {
+              return i.default.flatMap(t, (t) => {
                 return i.default.flatMap(e, (e, r) => {
                   return t(`${e}` === "0" ? `${e}` : `-${e}`, r);
                 });
@@ -39019,7 +39036,7 @@ module.exports = (function(e, t) {
             t.default = function() {
               return (0, i.default)({
                 "border-collapse": { "border-collapse": "collapse" },
-                "border-separate": { "border-collapse": "separate" }
+                "border-separate": { "border-collapse": "separate" },
               });
             };
             var n = r(293);
@@ -39064,7 +39081,7 @@ module.exports = (function(e, t) {
               ansi256: { channels: 1, labels: ["ansi256"] },
               hcg: { channels: 3, labels: ["h", "c", "g"] },
               apple: { channels: 3, labels: ["r16", "g16", "b16"] },
-              gray: { channels: 1, labels: ["gray"] }
+              gray: { channels: 1, labels: ["gray"] },
             });
             for (var s in a) {
               if (a.hasOwnProperty(s)) {
@@ -39690,7 +39707,7 @@ module.exports = (function(e, t) {
               return [
                 (r * i[0] + u) * 255,
                 (r * i[1] + u) * 255,
-                (r * i[2] + u) * 255
+                (r * i[2] + u) * 255,
               ];
             };
             a.hcg.hsv = function(e) {
@@ -39736,21 +39753,21 @@ module.exports = (function(e, t) {
               return [
                 (e[0] / 65535) * 255,
                 (e[1] / 65535) * 255,
-                (e[2] / 65535) * 255
+                (e[2] / 65535) * 255,
               ];
             };
             a.rgb.apple = function(e) {
               return [
                 (e[0] / 255) * 65535,
                 (e[1] / 255) * 65535,
-                (e[2] / 255) * 65535
+                (e[2] / 255) * 65535,
               ];
             };
             a.gray.rgb = function(e) {
               return [
                 (e[0] / 100) * 255,
                 (e[0] / 100) * 255,
-                (e[0] / 100) * 255
+                (e[0] / 100) * 255,
               ];
             };
             a.gray.hsl = a.gray.hsv = function(e) {
@@ -39864,7 +39881,7 @@ module.exports = (function(e, t) {
             function getSource(e, t, r, n) {
               return {
                 start: { line: e, column: t },
-                end: { line: r, column: n }
+                end: { line: r, column: n },
               };
             }
             var F = (function() {
@@ -39892,7 +39909,7 @@ module.exports = (function(e, t) {
                 this.tokens = (0, N.default)({
                   css: this.css,
                   error: this._errorGenerator(),
-                  safe: this.options.safe
+                  safe: this.options.safe,
                 });
                 this.loop();
               }
@@ -39930,7 +39947,7 @@ module.exports = (function(e, t) {
                     this.currToken[3],
                     this.currToken[4]
                   ),
-                  sourceIndex: t[5]
+                  sourceIndex: t[5],
                 };
                 if (r === 1 && !~[U.word].indexOf(e[0][0])) {
                   return this.expected("attribute", e[0][5]);
@@ -40134,7 +40151,7 @@ module.exports = (function(e, t) {
                       break;
                     default:
                       return this.error('Unexpected "' + f + '" found.', {
-                        index: c[5]
+                        index: c[5],
                       });
                   }
                   i++;
@@ -40150,7 +40167,7 @@ module.exports = (function(e, t) {
                 var t = new E.default({
                   value: "",
                   source: getSource(e[1], e[2], e[3], e[4]),
-                  sourceIndex: e[5]
+                  sourceIndex: e[5],
                 });
                 while (
                   this.position < this.tokens.length &&
@@ -40199,7 +40216,7 @@ module.exports = (function(e, t) {
                   new m.default({
                     value: this.content(),
                     source: getSource(e[1], e[2], e[3], e[4]),
-                    sourceIndex: e[5]
+                    sourceIndex: e[5],
                   })
                 );
                 this.position++;
@@ -40239,7 +40256,7 @@ module.exports = (function(e, t) {
                   new I.default({
                     value: this.content(),
                     source: getSource(e[1], e[2], e[3], e[4]),
-                    sourceIndex: e[5]
+                    sourceIndex: e[5],
                   })
                 );
                 this.position++;
@@ -40315,7 +40332,7 @@ module.exports = (function(e, t) {
                           e.currToken[3],
                           e.currToken[4]
                         ),
-                        sourceIndex: r[5]
+                        sourceIndex: r[5],
                       })
                     );
                     if (
@@ -40324,7 +40341,7 @@ module.exports = (function(e, t) {
                       e.nextToken[0] === U.openParenthesis
                     ) {
                       e.error("Misplaced parenthesis.", {
-                        index: e.nextToken[5]
+                        index: e.nextToken[5],
                       });
                     }
                   });
@@ -40361,7 +40378,7 @@ module.exports = (function(e, t) {
                   new S.default({
                     value: this.content(),
                     source: getSource(e[1], e[2], e[3], e[4]),
-                    sourceIndex: e[5]
+                    sourceIndex: e[5],
                   })
                 );
                 this.position++;
@@ -40377,7 +40394,7 @@ module.exports = (function(e, t) {
                   new A.default({
                     value: this.content(),
                     source: getSource(r[1], r[2], r[3], r[4]),
-                    sourceIndex: r[5]
+                    sourceIndex: r[5],
                   }),
                   e
                 );
@@ -40426,13 +40443,13 @@ module.exports = (function(e, t) {
                     l = new v.default({
                       value: s.slice(1),
                       source: d,
-                      sourceIndex: h
+                      sourceIndex: h,
                     });
                   } else if (~c.indexOf(n)) {
                     l = new _.default({
                       value: s.slice(1),
                       source: d,
-                      sourceIndex: h
+                      sourceIndex: h,
                     });
                   } else {
                     l = new w.default({ value: s, source: d, sourceIndex: h });
@@ -40513,7 +40530,7 @@ module.exports = (function(e, t) {
                 var i = /^[aeiou]/.test(e[0]) ? "an" : "a";
                 if (!r) {
                   return this.error("Expected " + i + " " + e + ".", {
-                    index: t
+                    index: t,
                   });
                 }
                 return this.error(
@@ -40578,20 +40595,20 @@ module.exports = (function(e, t) {
                   key: "currToken",
                   get: function get() {
                     return this.tokens[this.position];
-                  }
+                  },
                 },
                 {
                   key: "nextToken",
                   get: function get() {
                     return this.tokens[this.position + 1];
-                  }
+                  },
                 },
                 {
                   key: "prevToken",
                   get: function get() {
                     return this.tokens[this.position - 1];
-                  }
-                }
+                  },
+                },
               ]);
               return Parser;
             })();
@@ -40662,7 +40679,7 @@ module.exports = (function(e, t) {
                 get: function get() {
                   if (!n) n = r();
                   return n;
-                }
+                },
               });
               r.process = function(e, t, n) {
                 return postcss([r(n)]).process(e, t);
@@ -40702,7 +40719,7 @@ module.exports = (function(e, t) {
                 "cursor-pointer": { cursor: "pointer" },
                 "cursor-wait": { cursor: "wait" },
                 "cursor-move": { cursor: "move" },
-                "cursor-not-allowed": { cursor: "not-allowed" }
+                "cursor-not-allowed": { cursor: "not-allowed" },
               });
             };
             var n = r(293);
@@ -40928,7 +40945,7 @@ module.exports = (function(e, t) {
                 var e = this;
                 this.css = "";
                 this.map = new o.default.SourceMapGenerator({
-                  file: this.outputFile()
+                  file: this.outputFile(),
                 });
                 var t = 1;
                 var r = 1;
@@ -40943,14 +40960,14 @@ module.exports = (function(e, t) {
                         generated: { line: t, column: r - 1 },
                         original: {
                           line: a.source.start.line,
-                          column: a.source.start.column - 1
-                        }
+                          column: a.source.start.column - 1,
+                        },
                       });
                     } else {
                       e.map.addMapping({
                         source: "<no source>",
                         original: { line: 1, column: 0 },
-                        generated: { line: t, column: r - 1 }
+                        generated: { line: t, column: r - 1 },
                       });
                     }
                   }
@@ -40969,14 +40986,14 @@ module.exports = (function(e, t) {
                         generated: { line: t, column: r - 1 },
                         original: {
                           line: a.source.end.line,
-                          column: a.source.end.column
-                        }
+                          column: a.source.end.column,
+                        },
                       });
                     } else {
                       e.map.addMapping({
                         source: "<no source>",
                         original: { line: 1, column: 0 },
-                        generated: { line: t, column: r - 1 }
+                        generated: { line: t, column: r - 1 },
                       });
                     }
                   }
@@ -41016,7 +41033,7 @@ module.exports = (function(e, t) {
                   underline: [4, 24],
                   inverse: [7, 27],
                   hidden: [8, 28],
-                  strikethrough: [9, 29]
+                  strikethrough: [9, 29],
                 },
                 colors: {
                   black: [30, 39],
@@ -41027,7 +41044,7 @@ module.exports = (function(e, t) {
                   magenta: [35, 39],
                   cyan: [36, 39],
                   white: [37, 39],
-                  gray: [90, 39]
+                  gray: [90, 39],
                 },
                 bgColors: {
                   bgBlack: [40, 49],
@@ -41037,8 +41054,8 @@ module.exports = (function(e, t) {
                   bgBlue: [44, 49],
                   bgMagenta: [45, 49],
                   bgCyan: [46, 49],
-                  bgWhite: [47, 49]
-                }
+                  bgWhite: [47, 49],
+                },
               };
               e.colors.grey = e.colors.gray;
               Object.keys(e).forEach(function(t) {
@@ -41047,7 +41064,7 @@ module.exports = (function(e, t) {
                   var n = r[t];
                   e[t] = r[t] = {
                     open: "[" + n[0] + "m",
-                    close: "[" + n[1] + "m"
+                    close: "[" + n[1] + "m",
                   };
                 });
                 Object.defineProperty(e, t, { value: r, enumerable: false });
@@ -41056,7 +41073,7 @@ module.exports = (function(e, t) {
             }
             Object.defineProperty(e, "exports", {
               enumerable: true,
-              get: assembleStyles
+              get: assembleStyles,
             });
           },
           ,
@@ -41188,8 +41205,8 @@ module.exports = (function(e, t) {
                       "CssSyntaxError#generated is deprecated. Use input instead."
                     );
                     return this.input;
-                  }
-                }
+                  },
+                },
               ]);
               return CssSyntaxError;
             })();
@@ -41218,7 +41235,7 @@ module.exports = (function(e, t) {
                 table: { display: "table" },
                 "table-row": { display: "table-row" },
                 "table-cell": { display: "table-cell" },
-                hidden: { display: "none" }
+                hidden: { display: "none" },
               });
             };
             var n = r(293);
@@ -41247,22 +41264,22 @@ module.exports = (function(e, t) {
                   (0, a.default)({
                     [`py-${t}`]: {
                       "padding-top": `${e}`,
-                      "padding-bottom": `${e}`
+                      "padding-bottom": `${e}`,
                     },
                     [`px-${t}`]: {
                       "padding-left": `${e}`,
-                      "padding-right": `${e}`
-                    }
+                      "padding-right": `${e}`,
+                    },
                   }),
                 (e, t) =>
                   (0, a.default)({
                     [`pt-${t}`]: { "padding-top": `${e}` },
                     [`pr-${t}`]: { "padding-right": `${e}` },
                     [`pb-${t}`]: { "padding-bottom": `${e}` },
-                    [`pl-${t}`]: { "padding-left": `${e}` }
-                  })
+                    [`pl-${t}`]: { "padding-left": `${e}` },
+                  }),
               ];
-              return i.default.flatMap(t, t => {
+              return i.default.flatMap(t, (t) => {
                 return i.default.flatMap(e, t);
               });
             }
@@ -41362,7 +41379,7 @@ module.exports = (function(e, t) {
                 var i = {
                   file: this.mapResolve(n.source),
                   line: n.line,
-                  column: n.column
+                  column: n.column,
                 };
                 var o = r.sourceContentFor(n.source);
                 if (o) i.source = o;
@@ -41383,8 +41400,8 @@ module.exports = (function(e, t) {
                   key: "from",
                   get: function get() {
                     return this.file || this.id;
-                  }
-                }
+                  },
+                },
               ]);
               return Input;
             })();
@@ -41524,10 +41541,10 @@ module.exports = (function(e, t) {
               return e && e.__esModule ? e : { default: e };
             }
             function buildSelectorVariant(e, t, r, n = () => {}) {
-              return (0, a.default)(e => {
+              return (0, a.default)((e) => {
                 (0, u.default)(
                   e.first.filter(({ type: e }) => e === "class").pop(),
-                  e => {
+                  (e) => {
                     if (e === undefined) {
                       n(
                         "Variant cannot be generated because selector contains no classes."
@@ -41560,22 +41577,22 @@ module.exports = (function(e, t) {
                   (0, a.default)({
                     [`my-${t}`]: {
                       "margin-top": `${e}`,
-                      "margin-bottom": `${e}`
+                      "margin-bottom": `${e}`,
                     },
                     [`mx-${t}`]: {
                       "margin-left": `${e}`,
-                      "margin-right": `${e}`
-                    }
+                      "margin-right": `${e}`,
+                    },
                   }),
                 (e, t) =>
                   (0, a.default)({
                     [`mt-${t}`]: { "margin-top": `${e}` },
                     [`mr-${t}`]: { "margin-right": `${e}` },
                     [`mb-${t}`]: { "margin-bottom": `${e}` },
-                    [`ml-${t}`]: { "margin-left": `${e}` }
-                  })
+                    [`ml-${t}`]: { "margin-left": `${e}` },
+                  }),
               ];
-              return i.default.flatMap(t, t => {
+              return i.default.flatMap(t, (t) => {
                 return i.default.flatMap(e, t);
               });
             }
@@ -41724,7 +41741,7 @@ module.exports = (function(e, t) {
                   cascade: true,
                   colorCase: "lower",
                   colorShorthand: true,
-                  zeroLengthNoUnit: true
+                  zeroLengthNoUnit: true,
                 },
                 e
               );
@@ -41790,7 +41807,7 @@ module.exports = (function(e, t) {
             t.default = function() {
               return (0, i.default)({
                 "table-auto": { "table-layout": "auto" },
-                "table-fixed": { "table-layout": "fixed" }
+                "table-fixed": { "table-layout": "fixed" },
               });
             };
             var n = r(293);
@@ -41882,7 +41899,7 @@ module.exports = (function(e, t) {
                 auth: t[2],
                 host: t[3],
                 port: t[4],
-                path: t[5]
+                path: t[5],
               };
             }
             t.urlParse = urlParse;
@@ -42179,7 +42196,7 @@ module.exports = (function(e, t) {
                 "flex-grow": { "flex-grow": "1" },
                 "flex-shrink": { "flex-shrink": "1" },
                 "flex-no-grow": { "flex-grow": "0" },
-                "flex-no-shrink": { "flex-shrink": "0" }
+                "flex-no-shrink": { "flex-shrink": "0" },
               });
             };
             var n = r(293);
@@ -42226,8 +42243,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -42421,7 +42438,7 @@ module.exports = (function(e, t) {
             t.default = function() {
               return (0, i.default)({
                 visible: { visibility: "visible" },
-                invisible: { visibility: "hidden" }
+                invisible: { visibility: "hidden" },
               });
             };
             var n = r(293);
@@ -42503,7 +42520,7 @@ module.exports = (function(e, t) {
                   "hover",
                   "focus-within",
                   "focus",
-                  "active"
+                  "active",
                 ]);
               }
               return i.default.defaults(e, t);
@@ -42612,8 +42629,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -42642,7 +42659,7 @@ module.exports = (function(e, t) {
                       "Comment#left was deprecated. Use Comment#raws.left"
                     );
                     this.raws.left = e;
-                  }
+                  },
                 },
                 {
                   key: "right",
@@ -42657,8 +42674,8 @@ module.exports = (function(e, t) {
                       "Comment#right was deprecated. Use Comment#raws.right"
                     );
                     this.raws.right = e;
-                  }
-                }
+                  },
+                },
               ]);
               return Comment;
             })(s.default);
@@ -42697,7 +42714,7 @@ module.exports = (function(e, t) {
                   return this.node.error(this.text, {
                     plugin: this.plugin,
                     index: this.index,
-                    word: this.word
+                    word: this.word,
                   }).message;
                 } else if (this.plugin) {
                   return this.plugin + ": " + this.text;
@@ -42821,7 +42838,7 @@ module.exports = (function(e, t) {
                 var i = {
                   file: this.mapResolve(n.source),
                   line: n.line,
-                  column: n.column
+                  column: n.column,
                 };
                 var o = r.sourceContentFor(n.source);
                 if (o) i.source = o;
@@ -42842,8 +42859,8 @@ module.exports = (function(e, t) {
                   key: "from",
                   get: function get() {
                     return this.file || this.id;
-                  }
-                }
+                  },
+                },
               ]);
               return Input;
             })();
@@ -43040,7 +43057,7 @@ module.exports = (function(e, t) {
                 auth: t[2],
                 host: t[3],
                 port: t[4],
-                path: t[5]
+                path: t[5],
               };
             }
             t.urlParse = urlParse;
@@ -43325,7 +43342,7 @@ module.exports = (function(e, t) {
               "[": l.yellow,
               "]": l.yellow,
               ":": l.yellow,
-              ";": l.yellow
+              ";": l.yellow,
             };
             function getTokenType(e, t, r) {
               var n = e[0],
@@ -43420,7 +43437,7 @@ module.exports = (function(e, t) {
                 r.messages.push({
                   type: "dependency",
                   file: e,
-                  parent: t.source.input.file
+                  parent: t.source.input.file,
                 });
               };
             };
@@ -43457,7 +43474,7 @@ module.exports = (function(e, t) {
             t.default = function({ leading: e }) {
               return i.default.map(e, (e, t) => {
                 return (0, a.default)(`leading-${t}`, {
-                  "line-height": `${e}`
+                  "line-height": `${e}`,
                 });
               });
             };
@@ -43482,7 +43499,7 @@ module.exports = (function(e, t) {
                 "resize-none": { resize: "none" },
                 "resize-y": { resize: "vertical" },
                 "resize-x": { resize: "horizontal" },
-                resize: { resize: "both" }
+                resize: { resize: "both" },
               });
             };
             var n = r(293);
@@ -43507,7 +43524,7 @@ module.exports = (function(e, t) {
                 level: e,
                 hasBasic: true,
                 has256: e >= 2,
-                has16m: e >= 3
+                has16m: e >= 3,
               };
             };
             var o = (function() {
@@ -43789,7 +43806,7 @@ module.exports = (function(e, t) {
                 var e = this;
                 this.css = "";
                 this.map = new i.default.SourceMapGenerator({
-                  file: this.outputFile()
+                  file: this.outputFile(),
                 });
                 var t = 1;
                 var r = 1;
@@ -43804,14 +43821,14 @@ module.exports = (function(e, t) {
                         generated: { line: t, column: r - 1 },
                         original: {
                           line: a.source.start.line,
-                          column: a.source.start.column - 1
-                        }
+                          column: a.source.start.column - 1,
+                        },
                       });
                     } else {
                       e.map.addMapping({
                         source: "<no source>",
                         original: { line: 1, column: 0 },
-                        generated: { line: t, column: r - 1 }
+                        generated: { line: t, column: r - 1 },
                       });
                     }
                   }
@@ -43830,14 +43847,14 @@ module.exports = (function(e, t) {
                         generated: { line: t, column: r - 1 },
                         original: {
                           line: a.source.end.line,
-                          column: a.source.end.column
-                        }
+                          column: a.source.end.column,
+                        },
                       });
                     } else {
                       e.map.addMapping({
                         source: "<no source>",
                         original: { line: 1, column: 0 },
-                        generated: { line: t, column: r - 1 }
+                        generated: { line: t, column: r - 1 },
                       });
                     }
                   }
@@ -44023,7 +44040,7 @@ module.exports = (function(e, t) {
                         F,
                         W - G,
                         F,
-                        O - G
+                        O - G,
                       ]);
                       W = O;
                     } else {
@@ -44685,7 +44702,7 @@ module.exports = (function(e, t) {
               ["0", "\0"],
               ["\\", "\\"],
               ["e", ""],
-              ["a", ""]
+              ["a", ""],
             ]);
             function unescape(e) {
               if (
@@ -44821,8 +44838,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -44845,7 +44862,7 @@ module.exports = (function(e, t) {
                   this.spaces.before,
                   String(this.value),
                   e,
-                  this.spaces.after
+                  this.spaces.after,
                 ].join("");
               };
               return Pseudo;
@@ -44874,17 +44891,17 @@ module.exports = (function(e, t) {
             t.default = function(e, { variantGenerators: t }) {
               return function(r) {
                 const i = n({}, c, t);
-                r.walkAtRules("variants", t => {
+                r.walkAtRules("variants", (t) => {
                   const r = s.default.list
                     .comma(t.params)
-                    .filter(e => e !== "");
+                    .filter((e) => e !== "");
                   if (r.includes("responsive")) {
                     const e = s.default.atRule({ name: "responsive" });
                     t.before(e);
                     e.append(t);
                   }
                   t.before(t.clone().nodes);
-                  o.default.forEach(o.default.without(r, "responsive"), r => {
+                  o.default.forEach(o.default.without(r, "responsive"), (r) => {
                     i[r](t, e);
                   });
                   t.remove();
@@ -44918,7 +44935,7 @@ module.exports = (function(e, t) {
               hover: generatePseudoClassVariant("hover"),
               "focus-within": generatePseudoClassVariant("focus-within"),
               focus: generatePseudoClassVariant("focus"),
-              active: generatePseudoClassVariant("active")
+              active: generatePseudoClassVariant("active"),
             };
           },
           ,
@@ -44971,13 +44988,13 @@ module.exports = (function(e, t) {
                     this._empty,
                     e
                   );
-                }
+                },
               };
             }
             c.visible = {
               get() {
                 return build.call(this, this._styles || [], true, "visible");
-              }
+              },
             };
             i.color.closeRe = new RegExp(n(i.color.close), "g");
             for (const e of Object.keys(i.color.ansi)) {
@@ -44992,7 +45009,7 @@ module.exports = (function(e, t) {
                     const n = {
                       open: r,
                       close: i.color.close,
-                      closeRe: i.color.closeRe
+                      closeRe: i.color.closeRe,
                     };
                     return build.call(
                       this,
@@ -45001,7 +45018,7 @@ module.exports = (function(e, t) {
                       e
                     );
                   };
-                }
+                },
               };
             }
             i.bgColor.closeRe = new RegExp(n(i.bgColor.close), "g");
@@ -45018,7 +45035,7 @@ module.exports = (function(e, t) {
                     const n = {
                       open: r,
                       close: i.bgColor.close,
-                      closeRe: i.bgColor.closeRe
+                      closeRe: i.bgColor.closeRe,
                     };
                     return build.call(
                       this,
@@ -45027,7 +45044,7 @@ module.exports = (function(e, t) {
                       e
                     );
                   };
-                }
+                },
               };
             }
             const f = Object.defineProperties(() => {}, c);
@@ -45045,7 +45062,7 @@ module.exports = (function(e, t) {
                 },
                 set(e) {
                   i.level = e;
-                }
+                },
               });
               Object.defineProperty(n, "enabled", {
                 enumerable: true,
@@ -45054,7 +45071,7 @@ module.exports = (function(e, t) {
                 },
                 set(e) {
                   i.enabled = e;
-                }
+                },
               });
               n.hasGrey = this.hasGrey || r === "gray" || r === "grey";
               n.__proto__ = f;
@@ -45206,7 +45223,7 @@ module.exports = (function(e, t) {
             function _interopRequireDefault(e) {
               return e && e.__esModule ? e : { default: e };
             }
-            const m = u.default.plugin("tailwind", e => {
+            const m = u.default.plugin("tailwind", (e) => {
               const t = [];
               if (!a.default.isUndefined(e) && !a.default.isObject(e)) {
                 t.push((0, p.default)(i.default.resolve(e)));
@@ -45234,8 +45251,8 @@ module.exports = (function(e, t) {
                   maxValueLength: false,
                   trimLeadingZero: true,
                   trimTrailingZeros: true,
-                  zeroLengthNoUnit: false
-                })
+                  zeroLengthNoUnit: false,
+                }),
               ]);
             });
             m.defaultConfig = function() {
@@ -45272,8 +45289,8 @@ module.exports = (function(e, t) {
                 var n = {
                   generated: {
                     line: e.generatedLine,
-                    column: e.generatedColumn
-                  }
+                    column: e.generatedColumn,
+                  },
                 };
                 if (e.source != null) {
                   n.source = e.source;
@@ -45282,7 +45299,7 @@ module.exports = (function(e, t) {
                   }
                   n.original = {
                     line: e.originalLine,
-                    column: e.originalColumn
+                    column: e.originalColumn,
                   };
                   if (e.name != null) {
                     n.name = e.name;
@@ -45333,7 +45350,7 @@ module.exports = (function(e, t) {
                 originalLine: r != null && r.line,
                 originalColumn: r != null && r.column,
                 source: n,
-                name: o
+                name: o,
               });
             };
             SourceMapGenerator.prototype.setSourceContent = function SourceMapGenerator_setSourceContent(
@@ -45381,7 +45398,7 @@ module.exports = (function(e, t) {
                 if (t.source === n && t.originalLine != null) {
                   var o = e.originalPositionFor({
                     line: t.originalLine,
-                    column: t.originalColumn
+                    column: t.originalColumn,
                   });
                   if (o.source != null) {
                     t.source = o.source;
@@ -45471,7 +45488,7 @@ module.exports = (function(e, t) {
                       generated: e,
                       source: r,
                       original: t,
-                      name: n
+                      name: n,
                     })
                 );
               }
@@ -45551,7 +45568,7 @@ module.exports = (function(e, t) {
                 version: this._version,
                 sources: this._sources.toArray(),
                 names: this._names.toArray(),
-                mappings: this._serializeMappings()
+                mappings: this._serializeMappings(),
               };
               if (this._file != null) {
                 e.file = this._file;
@@ -45609,8 +45626,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -45750,8 +45767,8 @@ module.exports = (function(e, t) {
                   key: "content",
                   get: function get() {
                     return this.css;
-                  }
-                }
+                  },
+                },
               ]);
               return Result;
             })();
@@ -45797,8 +45814,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -45915,7 +45932,7 @@ module.exports = (function(e, t) {
                   return this.node.error(this.text, {
                     plugin: this.plugin,
                     index: this.index,
-                    word: this.word
+                    word: this.word,
                   }).message;
                 } else if (this.plugin) {
                   return this.plugin + ": " + this.text;
@@ -45964,8 +45981,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -46020,8 +46037,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -46096,8 +46113,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -46123,7 +46140,7 @@ module.exports = (function(e, t) {
                     var t = this.selector ? this.selector.match(/,\s*/) : null;
                     var r = t ? t[0] : "," + this.raw("between", "beforeOpen");
                     this.selector = e.join(r);
-                  }
+                  },
                 },
                 {
                   key: "_selector",
@@ -46138,8 +46155,8 @@ module.exports = (function(e, t) {
                       "Rule#_selector is deprecated. Use Rule#raws.selector"
                     );
                     this.raws.selector = e;
-                  }
-                }
+                  },
+                },
               ]);
               return Rule;
             })(o.default);
@@ -46215,7 +46232,7 @@ module.exports = (function(e, t) {
                   top: "auto",
                   right: "auto",
                   bottom: "auto",
-                  left: "auto"
+                  left: "auto",
                 },
                 pin: { top: 0, right: 0, bottom: 0, left: 0 },
                 "pin-y": { top: 0, bottom: 0 },
@@ -46223,7 +46240,7 @@ module.exports = (function(e, t) {
                 "pin-t": { top: 0 },
                 "pin-r": { right: 0 },
                 "pin-b": { bottom: 0 },
-                "pin-l": { left: 0 }
+                "pin-l": { left: 0 },
               });
             };
             var n = r(293);
@@ -46287,8 +46304,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -46344,7 +46361,7 @@ module.exports = (function(e, t) {
                       "AtRule#afterName was deprecated. Use AtRule#raws.afterName"
                     );
                     this.raws.afterName = e;
-                  }
+                  },
                 },
                 {
                   key: "_params",
@@ -46359,8 +46376,8 @@ module.exports = (function(e, t) {
                       "AtRule#_params was deprecated. Use AtRule#raws.params"
                     );
                     this.raws.params = e;
-                  }
-                }
+                  },
+                },
               ]);
               return AtRule;
             })(o.default);
@@ -46373,7 +46390,7 @@ module.exports = (function(e, t) {
             t.default = function() {
               return (0, i.default)({
                 "pointer-events-none": { "pointer-events": "none" },
-                "pointer-events-auto": { "pointer-events": "auto" }
+                "pointer-events-auto": { "pointer-events": "auto" },
               });
             };
             var n = r(293);
@@ -46484,7 +46501,7 @@ module.exports = (function(e, t) {
                 return [
                   this.spaces.before,
                   String(this.value),
-                  this.spaces.after
+                  this.spaces.after,
                 ].join("");
               };
               return _class;
@@ -46845,8 +46862,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -47359,14 +47376,14 @@ module.exports = (function(e, t) {
                   get: function get() {
                     if (!this.nodes) return undefined;
                     return this.nodes[0];
-                  }
+                  },
                 },
                 {
                   key: "last",
                   get: function get() {
                     if (!this.nodes) return undefined;
                     return this.nodes[this.nodes.length - 1];
-                  }
+                  },
                 },
                 {
                   key: "semicolon",
@@ -47381,7 +47398,7 @@ module.exports = (function(e, t) {
                       "Node#semicolon is deprecated. Use Node#raws.semicolon"
                     );
                     this.raws.semicolon = e;
-                  }
+                  },
                 },
                 {
                   key: "after",
@@ -47396,8 +47413,8 @@ module.exports = (function(e, t) {
                       "Node#after is deprecated. Use Node#raws.after"
                     );
                     this.raws.after = e;
-                  }
-                }
+                  },
+                },
               ]);
               return Container;
             })(f.default);
@@ -47457,7 +47474,7 @@ module.exports = (function(e, t) {
             Object.defineProperty(t, "__esModule", { value: true });
             t.default = function() {
               return (0, i.default)({
-                "list-reset": { "list-style": "none", padding: "0" }
+                "list-reset": { "list-style": "none", padding: "0" },
               });
             };
             var n = r(293);
@@ -47489,7 +47506,7 @@ module.exports = (function(e, t) {
                 auth: t[2],
                 host: t[3],
                 port: t[4],
-                path: t[5]
+                path: t[5],
               };
             }
             t.urlParse = urlParse;
@@ -47813,8 +47830,8 @@ module.exports = (function(e, t) {
                   value: e,
                   enumerable: false,
                   writable: true,
-                  configurable: true
-                }
+                  configurable: true,
+                },
               });
               if (t)
                 Object.setPrototypeOf
@@ -47839,7 +47856,7 @@ module.exports = (function(e, t) {
             Object.defineProperty(t, "__esModule", { value: true });
             t.default = function() {
               return (0, i.default)({
-                "appearance-none": { appearance: "none" }
+                "appearance-none": { appearance: "none" },
               });
             };
             var n = r(293);
@@ -47930,7 +47947,7 @@ module.exports = (function(e, t) {
                       a.charAt(r >>> 18),
                       a.charAt((r >>> 12) & 63),
                       t >= 2 ? "=" : a.charAt((r >>> 6) & 63),
-                      t >= 1 ? "=" : a.charAt(r & 63)
+                      t >= 1 ? "=" : a.charAt(r & 63),
                     ];
                   return n.join("");
                 };
@@ -48060,7 +48077,7 @@ module.exports = (function(e, t) {
                   encodeURI: g,
                   btou: _,
                   decode: S,
-                  noConflict: k
+                  noConflict: k,
                 };
                 if (typeof Object.defineProperty === "function") {
                   var R = function(e) {
@@ -48068,7 +48085,7 @@ module.exports = (function(e, t) {
                       value: e,
                       enumerable: false,
                       writable: true,
-                      configurable: true
+                      configurable: true,
                     };
                   };
                   t.Base64.extendString = function() {
@@ -48108,7 +48125,7 @@ module.exports = (function(e, t) {
                 return { Base64: t.Base64 };
               }
             );
-          }
+          },
         ],
         function(e) {
           "use strict";
@@ -48116,7 +48133,7 @@ module.exports = (function(e, t) {
             e.r = function(e) {
               if (typeof Symbol !== "undefined" && Symbol.toStringTag) {
                 Object.defineProperty(e, Symbol.toStringTag, {
-                  value: "Module"
+                  value: "Module",
                 });
               }
               Object.defineProperty(e, "__esModule", { value: true });
@@ -48152,13 +48169,13 @@ module.exports = (function(e, t) {
                 enumerable: true,
                 get: function() {
                   return e.l;
-                }
+                },
               });
               Object.defineProperty(e, "id", {
                 enumerable: true,
                 get: function() {
                   return e.i;
-                }
+                },
               });
               return e;
             };
@@ -48399,7 +48416,7 @@ module.exports = (function(e, t) {
         error: () => {},
         warn: () => {},
         info: () => {},
-        log: () => {}
+        log: () => {},
       });
       var f;
       (function(e) {
@@ -48588,7 +48605,7 @@ module.exports = (function(e, t) {
             triggerMessageQueue();
           }
         }
-        let L = e => {
+        let L = (e) => {
           try {
             if (i.isNotificationMessage(e) && e.method === c.type.method) {
               let r = createRequestQueueKey(e.params.id);
@@ -48675,11 +48692,11 @@ module.exports = (function(e, t) {
                 replySuccess(u, e.method, s);
               } else if (l.then) {
                 l.then(
-                  t => {
+                  (t) => {
                     delete M[r];
                     reply(t, e.method, s);
                   },
-                  t => {
+                  (t) => {
                     delete M[r];
                     if (t instanceof i.ResponseError) {
                       replyError(t, e.method, s);
@@ -48797,7 +48814,7 @@ module.exports = (function(e, t) {
           let t = undefined;
           let i;
           if (e.method === c.type.method) {
-            i = e => {
+            i = (e) => {
               let t = e.id;
               let r = M[String(t)];
               if (r) {
@@ -49002,7 +49019,7 @@ module.exports = (function(e, t) {
             isLSPMessage: true,
             type: e,
             message: t,
-            timestamp: Date.now()
+            timestamp: Date.now(),
           };
           D.log(r);
         }
@@ -49123,10 +49140,10 @@ module.exports = (function(e, t) {
                     if (r.length === 2) {
                       s = undefinedToNull(r[0]);
                     } else {
-                      s = r.slice(0, e).map(e => undefinedToNull(e));
+                      s = r.slice(0, e).map((e) => undefinedToNull(e));
                     }
                   } else {
-                    s = r.map(e => undefinedToNull(e));
+                    s = r.map((e) => undefinedToNull(e));
                   }
                   break;
               }
@@ -49143,7 +49160,7 @@ module.exports = (function(e, t) {
                 method: o,
                 timerStart: Date.now(),
                 resolve: e,
-                reject: r
+                reject: r,
               };
               traceSendingRequest(n);
               try {
@@ -49213,7 +49230,7 @@ module.exports = (function(e, t) {
             E = m.Disposed;
             T.fire(undefined);
             let r = new Error("Connection got disposed.");
-            Object.keys(x).forEach(e => {
+            Object.keys(x).forEach((e) => {
               x[e].reject(r);
             });
             x = Object.create(null);
@@ -49234,9 +49251,9 @@ module.exports = (function(e, t) {
           },
           inspect: () => {
             console.log("inspect");
-          }
+          },
         };
-        N.onNotification(d.type, e => {
+        N.onNotification(d.type, (e) => {
           if (O === f.Off || !D) {
             return;
           }
@@ -49316,7 +49333,7 @@ module.exports = (function(e, t) {
           }
           e = Object.create(null);
           let r = this.buffer.toString("ascii", 0, t).split(u);
-          r.forEach(t => {
+          r.forEach((t) => {
             let r = t.indexOf(":");
             if (r === -1) {
               throw new Error(
@@ -49420,10 +49437,10 @@ module.exports = (function(e, t) {
           this.messageToken = 0;
           this.partialMessageTimer = undefined;
           this.callback = e;
-          this.readable.on("data", e => {
+          this.readable.on("data", (e) => {
             this.onData(e);
           });
-          this.readable.on("error", e => this.fireError(e));
+          this.readable.on("error", (e) => this.fireError(e));
           this.readable.on("close", () => this.fireClose());
         }
         onData(e) {
@@ -49489,7 +49506,7 @@ module.exports = (function(e, t) {
           super();
           this.process = e;
           let t = this.process;
-          t.on("error", e => this.fireError(e));
+          t.on("error", (e) => this.fireError(e));
           t.on("close", () => this.fireClose());
         }
         listen(e) {
@@ -49531,7 +49548,7 @@ module.exports = (function(e, t) {
       e.exports = process.platform === "win32" ? win32 : posix;
       e.exports.posix = posix;
       e.exports.win32 = win32;
-    }
+    },
   },
   function(e) {
     "use strict";
